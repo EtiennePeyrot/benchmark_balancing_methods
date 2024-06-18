@@ -1,7 +1,9 @@
+if (!"shiny" %in% .packages(all.available = T))
+  install.packages("shiny")
 library(shiny)
-library(ggplot2)
 
-setwd("path to folder 'display app'")
+# setwd("path to folder 'display app'")
+
 if (!"df" %in% ls()) {
   # load each data file and combine them in a single array
   # because max file size is 25MB on github
