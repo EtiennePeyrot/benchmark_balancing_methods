@@ -1,5 +1,6 @@
 library(shiny)
 library(ggplot2)
+setwd("C:/Users/skoua/project benchmark balancing/display app")
 if (!"df" %in% ls()) load("improved data.Rdata")
 
 # See above for the definitions of ui and server
@@ -8,13 +9,50 @@ ui <- fluidPage(
   # Sidebar layout with input and output definitions ----
   column(
     width = 3,
-    h3("La statistique"),
+    h3("Scenario"),
+    fluidRow(
+      column(
+        width = 6,
+        radioButtons(
+          "trt_rarity",
+          label = "Treatment Rarity:",
+          choices = list(
+            "Common (~40%)" = "common",
+            "Rare (~15%)" = "rare",
+            "Very rare (~5%)" = "very rare"
+          )
+        ),
+        radioButtons(
+          "confdg_lvl",
+          label = "Confounding Level:",
+          choices = list(
+            "Low" = "low",
+            "Average" = "moderate",
+            "High" = "high"
+          )
+        )
+      ),
+      column(
+        width = 6,
+        radioButtons(
+          "obs",
+          label = "Sample Size:",
+          choices = list(
+            "n = 250" = "250",
+            "n = 500" = "500",
+            "n = 1000" = "1000",
+            "n = 2000" = "2000"
+          )
+        )
+      )
+    ),
+    h3("Estimation Method"),
     fluidRow(
       column(
         width = 6,
         radioButtons(
           "stat",
-          label = "Population cible :",
+          label = "Estimand:",
           choices = list("ATE" = "ATE",
                          "ATT" = "ATT"),
           
@@ -25,86 +63,48 @@ ui <- fluidPage(
         width = 6,
         checkboxGroupInput(
           "approche",
-          label = "Approche :",
+          label = "Estimator:",
           choices = list(
-            "Simple" = "",
-            "Double robuste" = ".dr",
-            "Alternative" = ".alt"
+            "Weighted average (WA)" = "",
+            "Augmented weighted average (AWA)" = ".dr",
+            "Weighted linear regression (WLR)" = ".alt"
           ),
           selected = ""
         )
       )
     ),
-    h3("Le jeu de donné"),
-    fluidRow(
-      column(
-        width = 6,
-        radioButtons(
-          "trt_rarity",
-          label = "Rareté du traitement :",
-          choices = list(
-            "Commun (~50%)" = "common",
-            "Rare (~20%)" = "rare",
-            "Très rare (~5%)" = "very rare"
-          )
-        ),
-        radioButtons(
-          "obs",
-          label = "Taille de l'échantillon :",
-          choices = list(
-            "250" = "250",
-            "500" = "500",
-            "1000" = "1000",
-            "2000" = "2000"
-          )
-        )
-      ),
-      column(
-        width = 6,
-        radioButtons(
-          "confdg_lvl",
-          label = "Niveau de confusion :",
-          choices = list(
-            "Faible" = "low",
-            "Moyen" = "moderate",
-            "Fort" = "high"
-          )
-        )
-      )
-    ),
-    h3("Les méthodes"),
     fluidRow(
       column(
         width = 6,
         checkboxGroupInput(
           "method",
-          label = "Méthode :",
+          label = "Balancing Mehtod:",
           choices = list(
-            "IPW" = "IPW",
+            "IPTW" = "IPW",
             "KOM" = "KOM",
             "EB" = "EB",
             "TLF" = "TLF"
           ),
-          selected = c("AIPW", "KOM", "EB", "TLF")
+          selected = c("IPW", "KOM", "EB", "TLF")
         )
       ),
       column(
         width = 6,
         checkboxGroupInput(
           "learner",
-          label = "Learners :",
+          label = "Regressor:",
           choices = list(
-            "Log reg" = "true",
-            "Misspecified" = "misspecified",
+            "Well-specified logistic reg." = "true",
+            "Misspecified logistic reg." = "misspecified",
             "Random forest" = "rf"
           ),
           selected = "true"
         )
       )
     ),
-    h3("Parametre affichage"),
+    h3("Display parameter:"),
     fluidRow(
-      sliderInput("ylim", label = "Limites", min = -2, 
+      sliderInput("ylim", label = "Window's Size", min = -2, 
                   max = 2, value = c(-.3,.3), step = .1)
     )
     
@@ -113,10 +113,8 @@ ui <- fluidPage(
          plotOutput(outputId = "distPlot",height = "800px"))
 )
 alpha = .6
-meth_to_col_alpha = c("IPW" = rgb(231/255, 076/255, 060/255, alpha), # "#E74C3C",
-                      "KOM" = rgb(244/255, 208/255, 063/255, alpha), # "#F4D03F",
-                      "EB"  = rgb(052/255, 152/255, 219/255, alpha), # "#3498DB",
-                      "TLF" = rgb(146/255, 204/255, 113/255, alpha)) # "#2ECC71"
+meth_to_col_alpha = c("IPW" = "#E74C3C", "KOM" = "#F1C40F",
+                      "EB"  = "#2E86C1", "TLF" = "#229954")
 
 modl_to_pch = c("true" = 0, "misspecified" = 2, "rf" = 1)
 
@@ -129,23 +127,25 @@ server <- function(input, output) {
     itr = 0
     col = rep("", n)
     pch = rep(NA, n)
-    for (lrnr in input$learner) {
-      for (met in input$method) {
-        for (appr in input$approche) {
+    name = rep(NA,n)
+    for (met in input$method) {
+      for (appr in input$approche) {
+        for (lrnr in input$learner) {
           itr = itr + 1
-          data[[paste(lrnr,met,appr)]] <- df[
-            input$obs,input$confdg_lvl,input$trt_rarity,met,lrnr,,paste0(input$stat,appr)]
+          name[itr] = paste(ifelse(met=="IPW","IPTW",met),
+                       switch(appr,"WA",".dr"="AWA", ".alt"="WLR"))
+          data[[itr]] <- df[input$obs,input$confdg_lvl,input$trt_rarity,met,
+                             lrnr,,paste0(input$stat,appr)]
           col[itr] = meth_to_col_alpha[met]
           pch[itr] = modl_to_pch[lrnr]
         }
       }
     }
-    
-    par(mar=c(2,10,5,0))
+    par(mar=c(2,5,2,0))
     boxplot(data, ylab = "", ylim = input$ylim,
          xlab = "", horizontal=TRUE, las = 1, col = col, pch =  pch,
-         main = paste("Boxplot of balancing method for\nsample size =", input$obs,
-                      input$trt_rarity,"treatment &",input$confdg_lvl,"confounding"))
+         names = name)
+    legend("topleft",c("Well-specified log. reg.","Misspecified log. reg."," Random forest"),pch=modl_to_pch)
     abline(v = 0, col = "red")
     
   })
@@ -153,4 +153,3 @@ server <- function(input, output) {
 }
 
 shinyApp(ui = ui, server = server)
-
