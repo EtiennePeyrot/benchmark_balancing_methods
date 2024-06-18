@@ -1,7 +1,26 @@
 library(shiny)
 library(ggplot2)
-setwd("C:/Users/skoua/project benchmark balancing/display app")
-if (!"df" %in% ls()) load("improved data.Rdata")
+
+setwd("path to folder 'display app'")
+if (!"df" %in% ls()) {
+  # load each data file and combine them in a single array
+  # because max file size is 25MB on github
+  df = array(NA,c(4,3,3,4,3,5000,10),
+             list(obs=c("250","500","1000","2000"),
+                  confdg_lvl=c("low","moderate","high"),
+                  trt_rarity=c("common","rare","very rare"),
+                  method=c("IPW","KOM","EB","TLF"),
+                  model=c("true","misspecified","rf"),
+                  NULL,
+                  c("ATE", "ATE.dr", "ATE.var", "ATE.alt", "ATE.alt.var", "ATT",
+                    "ATT.dr", "ATT.var", "ATT.alt", "ATT.alt.var")))
+  
+  for(i in 0:4) {
+    load(paste0("data",i+1,".Rdata"))
+    df[,,,,,1000*i+1:1000,] = data
+    rm(data)
+  }
+}
 
 # See above for the definitions of ui and server
 ui <- fluidPage(
