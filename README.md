@@ -1,6 +1,45 @@
-This project compare 3 recent (~2020) balancing methods with Inverse Probability of Treatment Weighting (IPTW) ("The central role of the propensity score in observational studies for causal effects" Rosenbaum, Paul R. and Rubin, Donald B.). The recents methods are :
-  - kernel optimal matching ("Generalized Optimal Matching Methods for Causal Inference" Nathan Kallus, "Optimal Estimation of Generalized Average Treatment Effects using Kernel Optimal Matching" Nathan Kallus and Michele Santacatterina),
-  - energy balancing ("Energy Balancing of Covariate Distributions" Jared D. Huling and Simon Mak),
-  - covariates balancing by tailored loss function ("Covariate balancing propensity score by tailored loss functions" Qingyuan Zhao).
+# Choosing Covariate Balancing Methods for Causal Inference
+_Code for the simulation study and companion Shiny app_
 
-To run the app, dowload the folder "display app", open file "app.R" and change the path in the function "setwd" (5th line of the file) to the path of the folder "display app". Run "app.R" with R. This code requires the R package shiny, if not already installed, app.R should automatically install it.
+**Repository:** https://github.com/EtiennePeyrot/benchmark_balancing_methods
+
+## Overview
+
+This repo contains code and materials for the article:
+
+> **Choosing Covariate Balancing Methods for Causal Inference: Practical Insights from a Simulation Study**  
+> Etienne Peyrot, Raphaël Porcher, François Petit
+
+We benchmark four weighting approaches—**IPTW**, **Energy Balancing (EB)**, **Kernel Optimal Matching (KOM)**, and **Covariate Balancing by Tailored Loss Functions (TLF)**—paired with **Weighted Least Squares (WLS)** and a **Doubly-Robust (DR)** estimator. We evaluate **ATE** and **ATT** across **36 scenarios** varying sample size (250, 500, 1000, 2000), treatment prevalence (25%, 50%, 75%), and a complexity factor that jointly increases confounding and reduces overlap. 
+
+### TL;DR of findings
+- DR generally reduces sensitivity to the choice of weights when the outcome model is reasonable.  
+- EB and KOM behave similarly under transparent tuning; EB is convenient, KOM requires kernel/penalty choices.  
+- IPTW is workable but variance-sensitive as complexity rises.  
+- TLF often shows low variance but higher bias, leading to sub-nominal CI coverage without outcome modeling. 
+
+---
+
+## What’s included
+
+- `display app/` – **R Shiny app** to explore metrics (bias, variance, RMSE, MAE, CI coverage) across all scenarios.  
+- `code/` – Scripts/functions to generate data, compute weights, run estimators, and summarize results.  
+- `results/` – (Optional) Saved outputs (figures/tables) if you choose to persist them locally.  
+- `docs/` – (Optional) manuscript/supplement exports.
+
+> The data-generating mechanism, scenario grid, and all performance metrics are documented in the paper and supplement. The exact values of `(a0, b0, g)` for each scenario are listed in the **Supplementary Material** (Tables 1–2). 
+
+---
+
+## Installation
+
+Tested with **R 4.2.1**.
+
+### Required packages
+- [`WeightIt`](https://cran.r-project.org/package=WeightIt) (EB weights, `method = "energy"`)
+- [`osqp`](https://cran.r-project.org/package=osqp) (QP solver used in KOM implementation)
+- `shiny` (for the app)
+- Common deps you likely already have: `mvtnorm`, `stats`, `utils`, etc.
+
+```r
+install.packages(c("WeightIt", "osqp", "shiny", "mvtnorm"))
