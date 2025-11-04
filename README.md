@@ -22,10 +22,9 @@ We benchmark four weighting approaches—**IPTW**, **Energy Balancing (EB)**, **
 
 ## What’s included
 
-- `display app/` – **R Shiny app** to explore metrics (bias, variance, RMSE, MAE, CI coverage) across all scenarios.  
+- `display app/` – **R Shiny app** to explore: impact of hyperparameters in the data-generative mechanism, and metrics (bias, variance, RMSE, MAE, CI coverage) across all scenarios.  
 - `code/` – Scripts/functions to generate data, compute weights, run estimators, and summarize results.  
-- `results/` – (Optional) Saved outputs (figures/tables) if you choose to persist them locally.  
-- `docs/` – (Optional) manuscript/supplement exports.
+- `results/` – Saved outputs (figures/tables) if you choose to persist them locally.  
 
 > The data-generating mechanism, scenario grid, and all performance metrics are documented in the paper and supplement. The exact values of `(a0, b0, g)` for each scenario are listed in the **Supplementary Material** (Tables 1–2). 
 
