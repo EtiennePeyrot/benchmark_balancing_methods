@@ -22,16 +22,6 @@ library(foreign) # import dta file
 
 probitsim = as.data.frame(read.dta("PROBITsim.dta", convert.factors = FALSE))
 
-#### Functions ####
-
-.mycombine = function(l) {
-  name = names(l[[1]])
-  out = lapply(name,
-               function(n) do.call(rbind, lapply(l, `[[`, n)) )
-  names(out) = name
-  return(out)
-}
-
 
 #### pre processing ####
 
@@ -129,3 +119,4 @@ tlf_dr_att  = dr_ci(A = A, outcome_block = outcome_block, ps_block = ps_block_tl
 
 data = as.list(environment())
 save(data, file="probitsim_output.RData")
+
