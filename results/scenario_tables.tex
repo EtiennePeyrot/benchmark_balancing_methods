@@ -1,0 +1,864 @@
+\begin{table}
+\caption{Scenario: $n=250$, proportion treated: low; complexity: low.}
+\label{tab:metrics_n250_ptlow_cxlow}
+\centering
+\small
+\setlength{\tabcolsep}{6pt}% tighter columns
+\begin{tabular}{llcccccccccc}
+\hline
+\multirow{2}{*}{Estimator} & \multirow{2}{*}{Method} & \multicolumn{5}{c}{ATE} & \multicolumn{5}{c}{ATT}\\
+ & & Bias & Var & RMSE & MAE & Coverage & Bias & Var & RMSE & MAE & Coverage\\
+\hline
+\multirow{4}{*}{WLS} & IPTW & 0.001 & 0.005 & 0.005 & 0.055 & 91.3\% & 0.010 & 0.005 & 0.005 & 0.058 & 93.8\%\\
+ & EB & 0.004 & 0.005 & 0.005 & 0.054 & 96.2\% & 0.008 & 0.005 & 0.005 & 0.057 & 96.4\%\\
+ & KOM & 0.018 & 0.004 & 0.004 & 0.051 & 95.7\% & 0.016 & 0.004 & 0.005 & 0.054 & 95.6\%\\
+ & TLF & 0.026 & 0.004 & 0.004 & 0.053 & 73.5\% & 0.020 & 0.004 & 0.005 & 0.055 & 97.1\%\\
+\cline{1-12}
+\multirow{4}{*}{DR} & IPTW & 0.004 & 0.005 & 0.005 & 0.056 & 90.2\% & -0.001 & 0.005 & 0.005 & 0.056 & 94.1\%\\
+ & EB & 0.004 & 0.004 & 0.004 & 0.053 & 91.1\% & 0.001 & 0.005 & 0.005 & 0.057 & 94.9\%\\
+ & KOM & 0.004 & 0.004 & 0.004 & 0.053 & 91.1\% & 0.000 & 0.005 & 0.005 & 0.053 & 94.8\%\\
+ & TLF & 0.004 & 0.005 & 0.005 & 0.053 & 80.2\% & 0.000 & 0.005 & 0.005 & 0.055 & 97.0\%\\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}
+\caption{Scenario: $n=250$, proportion treated: low; complexity: moderate.}
+\label{tab:metrics_n250_ptlow_cxmoderate}
+\centering
+\small
+\setlength{\tabcolsep}{6pt}% tighter columns
+\begin{tabular}{llcccccccccc}
+\hline
+\multirow{2}{*}{Estimator} & \multirow{2}{*}{Method} & \multicolumn{5}{c}{ATE} & \multicolumn{5}{c}{ATT}\\
+ & & Bias & Var & RMSE & MAE & Coverage & Bias & Var & RMSE & MAE & Coverage\\
+\hline
+\multirow{4}{*}{WLS} & IPTW & 0.009 & 0.007 & 0.007 & 0.063 & 89.8\% & 0.029 & 0.008 & 0.009 & 0.074 & 89.4\%\\
+ & EB & 0.012 & 0.004 & 0.004 & 0.053 & 98.2\% & 0.022 & 0.005 & 0.006 & 0.060 & 97.4\%\\
+ & KOM & 0.024 & 0.004 & 0.004 & 0.052 & 97.4\% & 0.024 & 0.005 & 0.005 & 0.057 & 96.9\%\\
+ & TLF & 0.055 & 0.003 & 0.006 & 0.065 & 56.7\% & 0.042 & 0.004 & 0.006 & 0.063 & 94.1\%\\
+\cline{1-12}
+\multirow{4}{*}{DR} & IPTW & 0.006 & 0.007 & 0.007 & 0.062 & 86.4\% & 0.001 & 0.006 & 0.006 & 0.063 & 92.5\%\\
+ & EB & 0.006 & 0.005 & 0.005 & 0.054 & 87.9\% & 0.002 & 0.005 & 0.005 & 0.059 & 94.7\%\\
+ & KOM & 0.006 & 0.005 & 0.005 & 0.054 & 87.9\% & 0.001 & 0.005 & 0.005 & 0.055 & 94.8\%\\
+ & TLF & 0.006 & 0.005 & 0.005 & 0.055 & 77.5\% & 0.003 & 0.005 & 0.005 & 0.057 & 96.6\%\\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}
+\caption{Scenario: $n=250$, proportion treated: low; complexity: high.}
+\label{tab:metrics_n250_ptlow_cxhigh}
+\centering
+\small
+\setlength{\tabcolsep}{6pt}% tighter columns
+\begin{tabular}{llcccccccccc}
+\hline
+\multirow{2}{*}{Estimator} & \multirow{2}{*}{Method} & \multicolumn{5}{c}{ATE} & \multicolumn{5}{c}{ATT}\\
+ & & Bias & Var & RMSE & MAE & Coverage & Bias & Var & RMSE & MAE & Coverage\\
+\hline
+\multirow{4}{*}{WLS} & IPTW & 0.024 & 0.013 & 0.013 & 0.087 & 86.7\% & 0.055 & 0.015 & 0.018 & 0.109 & 78.7\%\\
+ & EB & 0.028 & 0.004 & 0.005 & 0.056 & 99.2\% & 0.044 & 0.005 & 0.007 & 0.068 & 97.3\%\\
+ & KOM & 0.034 & 0.004 & 0.005 & 0.057 & 98.8\% & 0.031 & 0.005 & 0.006 & 0.061 & 98.2\%\\
+ & TLF & 0.148 & 0.004 & 0.026 & 0.148 & 8.4\% & 0.128 & 0.004 & 0.020 & 0.129 & 40.9\%\\
+\cline{1-12}
+\multirow{4}{*}{DR} & IPTW & 0.012 & 0.009 & 0.009 & 0.068 & 76.6\% & -0.005 & 0.012 & 0.012 & 0.075 & 90.7\%\\
+ & EB & 0.014 & 0.006 & 0.006 & 0.060 & 76.1\% & -0.001 & 0.005 & 0.005 & 0.059 & 93.4\%\\
+ & KOM & 0.014 & 0.006 & 0.006 & 0.060 & 76.1\% & -0.004 & 0.005 & 0.005 & 0.057 & 93.4\%\\
+ & TLF & 0.014 & 0.006 & 0.006 & 0.060 & 73.3\% & -0.003 & 0.005 & 0.005 & 0.054 & 93.9\%\\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}
+\caption{Scenario: $n=250$, proportion treated: moderate; complexity: low.}
+\label{tab:metrics_n250_ptmoderate_cxlow}
+\centering
+\small
+\setlength{\tabcolsep}{6pt}% tighter columns
+\begin{tabular}{llcccccccccc}
+\hline
+\multirow{2}{*}{Estimator} & \multirow{2}{*}{Method} & \multicolumn{5}{c}{ATE} & \multicolumn{5}{c}{ATT}\\
+ & & Bias & Var & RMSE & MAE & Coverage & Bias & Var & RMSE & MAE & Coverage\\
+\hline
+\multirow{4}{*}{WLS} & IPTW & 0.006 & 0.003 & 0.003 & 0.046 & 93.1\% & 0.009 & 0.005 & 0.005 & 0.056 & 92.4\%\\
+ & EB & 0.004 & 0.003 & 0.003 & 0.046 & 96.1\% & 0.010 & 0.004 & 0.004 & 0.052 & 95.4\%\\
+ & KOM & 0.014 & 0.003 & 0.003 & 0.045 & 95.0\% & 0.019 & 0.003 & 0.004 & 0.050 & 94.0\%\\
+ & TLF & 0.024 & 0.003 & 0.003 & 0.047 & 82.9\% & 0.031 & 0.003 & 0.004 & 0.051 & 92.2\%\\
+\cline{1-12}
+\multirow{4}{*}{DR} & IPTW & 0.001 & 0.003 & 0.003 & 0.046 & 93.1\% & 0.000 & 0.005 & 0.005 & 0.054 & 92.7\%\\
+ & EB & 0.001 & 0.003 & 0.003 & 0.044 & 93.8\% & 0.002 & 0.004 & 0.004 & 0.053 & 93.4\%\\
+ & KOM & 0.001 & 0.003 & 0.003 & 0.044 & 93.7\% & 0.001 & 0.004 & 0.004 & 0.051 & 94.1\%\\
+ & TLF & 0.001 & 0.003 & 0.003 & 0.044 & 87.9\% & 0.001 & 0.004 & 0.004 & 0.051 & 94.6\%\\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}
+\caption{Scenario: $n=250$, proportion treated: moderate; complexity: moderate.}
+\label{tab:metrics_n250_ptmoderate_cxmoderate}
+\centering
+\small
+\setlength{\tabcolsep}{6pt}% tighter columns
+\begin{tabular}{llcccccccccc}
+\hline
+\multirow{2}{*}{Estimator} & \multirow{2}{*}{Method} & \multicolumn{5}{c}{ATE} & \multicolumn{5}{c}{ATT}\\
+ & & Bias & Var & RMSE & MAE & Coverage & Bias & Var & RMSE & MAE & Coverage\\
+\hline
+\multirow{4}{*}{WLS} & IPTW & 0.011 & 0.005 & 0.005 & 0.055 & 90.5\% & 0.020 & 0.009 & 0.009 & 0.077 & 85.5\%\\
+ & EB & 0.007 & 0.003 & 0.003 & 0.045 & 97.6\% & 0.020 & 0.005 & 0.005 & 0.057 & 95.7\%\\
+ & KOM & 0.017 & 0.003 & 0.003 & 0.044 & 96.2\% & 0.025 & 0.004 & 0.005 & 0.054 & 94.1\%\\
+ & TLF & 0.047 & 0.003 & 0.005 & 0.056 & 67.0\% & 0.059 & 0.003 & 0.007 & 0.067 & 80.2\%\\
+\cline{1-12}
+\multirow{4}{*}{DR} & IPTW & -0.001 & 0.004 & 0.004 & 0.049 & 90.5\% & -0.003 & 0.008 & 0.008 & 0.066 & 89.6\%\\
+ & EB & 0.000 & 0.003 & 0.003 & 0.043 & 92.7\% & 0.000 & 0.005 & 0.005 & 0.059 & 91.8\%\\
+ & KOM & 0.000 & 0.003 & 0.003 & 0.043 & 92.7\% & -0.001 & 0.005 & 0.005 & 0.055 & 92.1\%\\
+ & TLF & 0.000 & 0.003 & 0.003 & 0.043 & 86.5\% & -0.001 & 0.005 & 0.005 & 0.055 & 92.0\%\\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}
+\caption{Scenario: $n=250$, proportion treated: moderate; complexity: high.}
+\label{tab:metrics_n250_ptmoderate_cxhigh}
+\centering
+\small
+\setlength{\tabcolsep}{6pt}% tighter columns
+\begin{tabular}{llcccccccccc}
+\hline
+\multirow{2}{*}{Estimator} & \multirow{2}{*}{Method} & \multicolumn{5}{c}{ATE} & \multicolumn{5}{c}{ATT}\\
+ & & Bias & Var & RMSE & MAE & Coverage & Bias & Var & RMSE & MAE & Coverage\\
+\hline
+\multirow{4}{*}{WLS} & IPTW & 0.029 & 0.010 & 0.011 & 0.080 & 81.6\% & 0.041 & 0.020 & 0.021 & 0.118 & 72.8\%\\
+ & EB & 0.016 & 0.003 & 0.003 & 0.046 & 99.0\% & 0.042 & 0.005 & 0.007 & 0.066 & 95.1\%\\
+ & KOM & 0.023 & 0.003 & 0.003 & 0.047 & 97.5\% & 0.035 & 0.005 & 0.006 & 0.061 & 95.1\%\\
+ & TLF & 0.082 & 0.002 & 0.009 & 0.084 & 33.0\% & 0.092 & 0.003 & 0.011 & 0.094 & 52.8\%\\
+\cline{1-12}
+\multirow{4}{*}{DR} & IPTW & 0.001 & 0.008 & 0.008 & 0.058 & 87.4\% & -0.004 & 0.016 & 0.016 & 0.085 & 84.8\%\\
+ & EB & 0.002 & 0.003 & 0.003 & 0.044 & 89.3\% & -0.001 & 0.007 & 0.007 & 0.066 & 86.5\%\\
+ & KOM & 0.002 & 0.003 & 0.003 & 0.044 & 89.3\% & -0.002 & 0.006 & 0.006 & 0.064 & 86.6\%\\
+ & TLF & 0.002 & 0.003 & 0.003 & 0.044 & 83.6\% & -0.002 & 0.006 & 0.006 & 0.063 & 86.4\%\\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}
+\caption{Scenario: $n=250$, proportion treated: high; complexity: low.}
+\label{tab:metrics_n250_pthigh_cxlow}
+\centering
+\small
+\setlength{\tabcolsep}{6pt}% tighter columns
+\begin{tabular}{llcccccccccc}
+\hline
+\multirow{2}{*}{Estimator} & \multirow{2}{*}{Method} & \multicolumn{5}{c}{ATE} & \multicolumn{5}{c}{ATT}\\
+ & & Bias & Var & RMSE & MAE & Coverage & Bias & Var & RMSE & MAE & Coverage\\
+\hline
+\multirow{4}{*}{WLS} & IPTW & 0.006 & 0.006 & 0.006 & 0.063 & 88.8\% & 0.008 & 0.008 & 0.008 & 0.073 & 87.3\%\\
+ & EB & 0.006 & 0.005 & 0.005 & 0.056 & 95.2\% & 0.013 & 0.006 & 0.006 & 0.062 & 93.7\%\\
+ & KOM & 0.021 & 0.004 & 0.005 & 0.054 & 92.2\% & 0.025 & 0.005 & 0.005 & 0.059 & 90.5\%\\
+ & TLF & 0.024 & 0.004 & 0.005 & 0.054 & 70.8\% & 0.027 & 0.004 & 0.005 & 0.057 & 83.1\%\\
+\cline{1-12}
+\multirow{4}{*}{DR} & IPTW & -0.005 & 0.006 & 0.006 & 0.061 & 86.4\% & -0.007 & 0.008 & 0.008 & 0.071 & 85.0\%\\
+ & EB & -0.005 & 0.005 & 0.005 & 0.058 & 88.4\% & -0.005 & 0.007 & 0.007 & 0.068 & 87.0\%\\
+ & KOM & -0.005 & 0.005 & 0.005 & 0.058 & 88.4\% & -0.006 & 0.007 & 0.007 & 0.066 & 87.0\%\\
+ & TLF & -0.005 & 0.005 & 0.005 & 0.058 & 76.3\% & -0.006 & 0.007 & 0.007 & 0.066 & 83.7\%\\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}
+\caption{Scenario: $n=250$, proportion treated: high; complexity: moderate.}
+\label{tab:metrics_n250_pthigh_cxmoderate}
+\centering
+\small
+\setlength{\tabcolsep}{6pt}% tighter columns
+\begin{tabular}{llcccccccccc}
+\hline
+\multirow{2}{*}{Estimator} & \multirow{2}{*}{Method} & \multicolumn{5}{c}{ATE} & \multicolumn{5}{c}{ATT}\\
+ & & Bias & Var & RMSE & MAE & Coverage & Bias & Var & RMSE & MAE & Coverage\\
+\hline
+\multirow{4}{*}{WLS} & IPTW & 0.015 & 0.011 & 0.011 & 0.083 & 81.1\% & 0.019 & 0.016 & 0.016 & 0.102 & 77.6\%\\
+ & EB & 0.012 & 0.005 & 0.005 & 0.056 & 95.9\% & 0.027 & 0.006 & 0.007 & 0.068 & 93.1\%\\
+ & KOM & 0.031 & 0.004 & 0.005 & 0.059 & 90.3\% & 0.040 & 0.005 & 0.007 & 0.068 & 87.3\%\\
+ & TLF & 0.048 & 0.004 & 0.006 & 0.064 & 56.2\% & 0.052 & 0.004 & 0.007 & 0.068 & 69.3\%\\
+\cline{1-12}
+\multirow{4}{*}{DR} & IPTW & -0.005 & 0.009 & 0.009 & 0.073 & 77.9\% & -0.007 & 0.014 & 0.014 & 0.090 & 75.5\%\\
+ & EB & -0.005 & 0.007 & 0.007 & 0.065 & 78.8\% & -0.005 & 0.010 & 0.010 & 0.080 & 76.3\%\\
+ & KOM & -0.005 & 0.007 & 0.007 & 0.065 & 78.8\% & -0.006 & 0.010 & 0.010 & 0.079 & 76.4\%\\
+ & TLF & -0.005 & 0.007 & 0.007 & 0.065 & 69.6\% & -0.006 & 0.010 & 0.010 & 0.079 & 74.1\%\\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}
+\caption{Scenario: $n=250$, proportion treated: high; complexity: high.}
+\label{tab:metrics_n250_pthigh_cxhigh}
+\centering
+\small
+\setlength{\tabcolsep}{6pt}% tighter columns
+\begin{tabular}{llcccccccccc}
+\hline
+\multirow{2}{*}{Estimator} & \multirow{2}{*}{Method} & \multicolumn{5}{c}{ATE} & \multicolumn{5}{c}{ATT}\\
+ & & Bias & Var & RMSE & MAE & Coverage & Bias & Var & RMSE & MAE & Coverage\\
+\hline
+\multirow{4}{*}{WLS} & IPTW & 0.036 & 0.022 & 0.023 & 0.121 & 64.0\% & 0.043 & 0.033 & 0.035 & 0.154 & 60.5\%\\
+ & EB & 0.023 & 0.005 & 0.005 & 0.058 & 95.1\% & 0.054 & 0.007 & 0.010 & 0.082 & 88.6\%\\
+ & KOM & 0.048 & 0.005 & 0.007 & 0.070 & 85.9\% & 0.061 & 0.007 & 0.011 & 0.084 & 82.5\%\\
+ & TLF & 0.083 & 0.004 & 0.011 & 0.088 & 32.9\% & 0.086 & 0.004 & 0.012 & 0.092 & 45.5\%\\
+\cline{1-12}
+\multirow{4}{*}{DR} & IPTW & -0.011 & 0.018 & 0.018 & 0.092 & 56.6\% & -0.015 & 0.029 & 0.030 & 0.117 & 52.2\%\\
+ & EB & -0.012 & 0.010 & 0.010 & 0.082 & 54.7\% & -0.015 & 0.017 & 0.017 & 0.105 & 51.5\%\\
+ & KOM & -0.012 & 0.010 & 0.010 & 0.082 & 54.8\% & -0.016 & 0.017 & 0.017 & 0.105 & 51.3\%\\
+ & TLF & -0.012 & 0.010 & 0.010 & 0.082 & 50.9\% & -0.016 & 0.017 & 0.017 & 0.105 & 50.6\%\\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}
+\caption{Scenario: $n=500$, proportion treated: low; complexity: low.}
+\label{tab:metrics_n500_ptlow_cxlow}
+\centering
+\small
+\setlength{\tabcolsep}{6pt}% tighter columns
+\begin{tabular}{llcccccccccc}
+\hline
+\multirow{2}{*}{Estimator} & \multirow{2}{*}{Method} & \multicolumn{5}{c}{ATE} & \multicolumn{5}{c}{ATT}\\
+ & & Bias & Var & RMSE & MAE & Coverage & Bias & Var & RMSE & MAE & Coverage\\
+\hline
+\multirow{4}{*}{WLS} & IPTW & 0.003 & 0.002 & 0.002 & 0.039 & 93.1\% & 0.010 & 0.002 & 0.003 & 0.041 & 94.3\%\\
+ & EB & 0.003 & 0.002 & 0.002 & 0.039 & 96.7\% & 0.006 & 0.003 & 0.003 & 0.041 & 97.2\%\\
+ & KOM & 0.011 & 0.002 & 0.002 & 0.037 & 96.0\% & 0.010 & 0.002 & 0.002 & 0.038 & 96.3\%\\
+ & TLF & 0.025 & 0.002 & 0.003 & 0.041 & 75.0\% & 0.019 & 0.002 & 0.002 & 0.040 & 95.2\%\\
+\cline{1-12}
+\multirow{4}{*}{DR} & IPTW & 0.001 & 0.002 & 0.002 & 0.039 & 92.3\% & 0.000 & 0.002 & 0.002 & 0.039 & 94.4\%\\
+ & EB & 0.001 & 0.002 & 0.002 & 0.037 & 93.2\% & 0.001 & 0.003 & 0.003 & 0.041 & 95.4\%\\
+ & KOM & 0.001 & 0.002 & 0.002 & 0.037 & 93.2\% & 0.001 & 0.002 & 0.002 & 0.038 & 95.2\%\\
+ & TLF & 0.001 & 0.002 & 0.002 & 0.037 & 82.9\% & 0.002 & 0.002 & 0.002 & 0.038 & 96.5\%\\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}
+\caption{Scenario: $n=500$, proportion treated: low; complexity: moderate.}
+\label{tab:metrics_n500_ptlow_cxmoderate}
+\centering
+\small
+\setlength{\tabcolsep}{6pt}% tighter columns
+\begin{tabular}{llcccccccccc}
+\hline
+\multirow{2}{*}{Estimator} & \multirow{2}{*}{Method} & \multicolumn{5}{c}{ATE} & \multicolumn{5}{c}{ATT}\\
+ & & Bias & Var & RMSE & MAE & Coverage & Bias & Var & RMSE & MAE & Coverage\\
+\hline
+\multirow{4}{*}{WLS} & IPTW & 0.008 & 0.003 & 0.003 & 0.045 & 91.3\% & 0.029 & 0.003 & 0.004 & 0.053 & 89.2\%\\
+ & EB & 0.009 & 0.002 & 0.003 & 0.040 & 98.3\% & 0.015 & 0.003 & 0.003 & 0.043 & 97.9\%\\
+ & KOM & 0.016 & 0.002 & 0.002 & 0.038 & 97.8\% & 0.016 & 0.002 & 0.003 & 0.041 & 97.6\%\\
+ & TLF & 0.054 & 0.002 & 0.005 & 0.057 & 48.7\% & 0.040 & 0.002 & 0.004 & 0.050 & 87.3\%\\
+\cline{1-12}
+\multirow{4}{*}{DR} & IPTW & 0.003 & 0.003 & 0.003 & 0.042 & 90.0\% & 0.001 & 0.003 & 0.003 & 0.042 & 94.1\%\\
+ & EB & 0.003 & 0.002 & 0.002 & 0.037 & 92.3\% & 0.003 & 0.003 & 0.003 & 0.042 & 94.8\%\\
+ & KOM & 0.003 & 0.002 & 0.002 & 0.037 & 92.3\% & 0.002 & 0.002 & 0.002 & 0.039 & 94.7\%\\
+ & TLF & 0.004 & 0.002 & 0.002 & 0.038 & 81.1\% & 0.004 & 0.002 & 0.002 & 0.039 & 95.1\%\\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}
+\caption{Scenario: $n=500$, proportion treated: low; complexity: high.}
+\label{tab:metrics_n500_ptlow_cxhigh}
+\centering
+\small
+\setlength{\tabcolsep}{6pt}% tighter columns
+\begin{tabular}{llcccccccccc}
+\hline
+\multirow{2}{*}{Estimator} & \multirow{2}{*}{Method} & \multicolumn{5}{c}{ATE} & \multicolumn{5}{c}{ATT}\\
+ & & Bias & Var & RMSE & MAE & Coverage & Bias & Var & RMSE & MAE & Coverage\\
+\hline
+\multirow{4}{*}{WLS} & IPTW & 0.015 & 0.007 & 0.007 & 0.063 & 88.8\% & 0.054 & 0.007 & 0.010 & 0.082 & 79.1\%\\
+ & EB & 0.018 & 0.002 & 0.003 & 0.041 & 99.4\% & 0.030 & 0.003 & 0.004 & 0.049 & 98.3\%\\
+ & KOM & 0.022 & 0.002 & 0.003 & 0.042 & 98.9\% & 0.019 & 0.003 & 0.003 & 0.043 & 99.0\%\\
+ & TLF & 0.091 & 0.002 & 0.010 & 0.091 & 12.1\% & 0.059 & 0.002 & 0.006 & 0.063 & 73.0\%\\
+\cline{1-12}
+\multirow{4}{*}{DR} & IPTW & 0.003 & 0.004 & 0.004 & 0.046 & 88.4\% & -0.004 & 0.005 & 0.005 & 0.051 & 93.4\%\\
+ & EB & 0.005 & 0.002 & 0.002 & 0.038 & 90.5\% & -0.002 & 0.003 & 0.003 & 0.042 & 95.2\%\\
+ & KOM & 0.005 & 0.002 & 0.002 & 0.038 & 90.5\% & -0.003 & 0.003 & 0.003 & 0.040 & 95.8\%\\
+ & TLF & 0.006 & 0.002 & 0.002 & 0.038 & 81.6\% & -0.001 & 0.002 & 0.002 & 0.038 & 94.4\%\\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}
+\caption{Scenario: $n=500$, proportion treated: moderate; complexity: low.}
+\label{tab:metrics_n500_ptmoderate_cxlow}
+\centering
+\small
+\setlength{\tabcolsep}{6pt}% tighter columns
+\begin{tabular}{llcccccccccc}
+\hline
+\multirow{2}{*}{Estimator} & \multirow{2}{*}{Method} & \multicolumn{5}{c}{ATE} & \multicolumn{5}{c}{ATT}\\
+ & & Bias & Var & RMSE & MAE & Coverage & Bias & Var & RMSE & MAE & Coverage\\
+\hline
+\multirow{4}{*}{WLS} & IPTW & 0.005 & 0.002 & 0.002 & 0.032 & 94.1\% & 0.008 & 0.002 & 0.002 & 0.038 & 93.6\%\\
+ & EB & 0.002 & 0.002 & 0.002 & 0.032 & 96.8\% & 0.006 & 0.002 & 0.002 & 0.037 & 96.3\%\\
+ & KOM & 0.008 & 0.001 & 0.001 & 0.031 & 95.8\% & 0.011 & 0.002 & 0.002 & 0.035 & 95.2\%\\
+ & TLF & 0.007 & 0.002 & 0.002 & 0.032 & 86.7\% & 0.011 & 0.002 & 0.002 & 0.036 & 94.0\%\\
+\cline{1-12}
+\multirow{4}{*}{DR} & IPTW & 0.000 & 0.002 & 0.002 & 0.031 & 94.3\% & 0.000 & 0.002 & 0.002 & 0.036 & 93.8\%\\
+ & EB & 0.000 & 0.001 & 0.001 & 0.030 & 94.7\% & 0.001 & 0.002 & 0.002 & 0.037 & 94.4\%\\
+ & KOM & 0.000 & 0.001 & 0.001 & 0.030 & 94.7\% & 0.001 & 0.002 & 0.002 & 0.035 & 94.4\%\\
+ & TLF & 0.001 & 0.002 & 0.002 & 0.031 & 87.5\% & 0.001 & 0.002 & 0.002 & 0.036 & 94.1\%\\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}
+\caption{Scenario: $n=500$, proportion treated: moderate; complexity: moderate.}
+\label{tab:metrics_n500_ptmoderate_cxmoderate}
+\centering
+\small
+\setlength{\tabcolsep}{6pt}% tighter columns
+\begin{tabular}{llcccccccccc}
+\hline
+\multirow{2}{*}{Estimator} & \multirow{2}{*}{Method} & \multicolumn{5}{c}{ATE} & \multicolumn{5}{c}{ATT}\\
+ & & Bias & Var & RMSE & MAE & Coverage & Bias & Var & RMSE & MAE & Coverage\\
+\hline
+\multirow{4}{*}{WLS} & IPTW & 0.012 & 0.002 & 0.002 & 0.038 & 91.7\% & 0.019 & 0.004 & 0.005 & 0.054 & 87.9\%\\
+ & EB & 0.004 & 0.002 & 0.002 & 0.032 & 98.1\% & 0.012 & 0.002 & 0.003 & 0.041 & 97.2\%\\
+ & KOM & 0.010 & 0.001 & 0.001 & 0.031 & 97.2\% & 0.015 & 0.002 & 0.002 & 0.038 & 96.2\%\\
+ & TLF & 0.047 & 0.001 & 0.003 & 0.050 & 57.8\% & 0.059 & 0.001 & 0.005 & 0.061 & 62.9\%\\
+\cline{1-12}
+\multirow{4}{*}{DR} & IPTW & -0.001 & 0.002 & 0.002 & 0.034 & 92.9\% & -0.002 & 0.003 & 0.003 & 0.045 & 91.7\%\\
+ & EB & 0.000 & 0.001 & 0.001 & 0.029 & 94.5\% & 0.000 & 0.003 & 0.003 & 0.041 & 94.0\%\\
+ & KOM & 0.000 & 0.001 & 0.001 & 0.029 & 94.5\% & -0.001 & 0.002 & 0.002 & 0.038 & 94.1\%\\
+ & TLF & 0.000 & 0.001 & 0.001 & 0.029 & 90.1\% & 0.000 & 0.002 & 0.002 & 0.037 & 93.4\%\\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}
+\caption{Scenario: $n=500$, proportion treated: moderate; complexity: high.}
+\label{tab:metrics_n500_ptmoderate_cxhigh}
+\centering
+\small
+\setlength{\tabcolsep}{6pt}% tighter columns
+\begin{tabular}{llcccccccccc}
+\hline
+\multirow{2}{*}{Estimator} & \multirow{2}{*}{Method} & \multicolumn{5}{c}{ATE} & \multicolumn{5}{c}{ATT}\\
+ & & Bias & Var & RMSE & MAE & Coverage & Bias & Var & RMSE & MAE & Coverage\\
+\hline
+\multirow{4}{*}{WLS} & IPTW & 0.027 & 0.005 & 0.006 & 0.059 & 83.8\% & 0.042 & 0.011 & 0.013 & 0.092 & 75.0\%\\
+ & EB & 0.009 & 0.002 & 0.002 & 0.032 & 99.5\% & 0.031 & 0.003 & 0.004 & 0.051 & 96.7\%\\
+ & KOM & 0.014 & 0.001 & 0.002 & 0.033 & 98.7\% & 0.021 & 0.003 & 0.003 & 0.045 & 97.2\%\\
+ & TLF & 0.080 & 0.001 & 0.007 & 0.080 & 16.5\% & 0.092 & 0.001 & 0.010 & 0.092 & 23.7\%\\
+\cline{1-12}
+\multirow{4}{*}{DR} & IPTW & -0.001 & 0.003 & 0.003 & 0.041 & 91.1\% & -0.003 & 0.009 & 0.009 & 0.062 & 89.3\%\\
+ & EB & 0.000 & 0.001 & 0.001 & 0.029 & 93.4\% & -0.001 & 0.003 & 0.003 & 0.046 & 91.7\%\\
+ & KOM & 0.000 & 0.001 & 0.001 & 0.029 & 93.4\% & -0.003 & 0.003 & 0.003 & 0.044 & 91.9\%\\
+ & TLF & 0.000 & 0.001 & 0.001 & 0.029 & 88.5\% & -0.002 & 0.003 & 0.003 & 0.041 & 90.5\%\\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}
+\caption{Scenario: $n=500$, proportion treated: high; complexity: low.}
+\label{tab:metrics_n500_pthigh_cxlow}
+\centering
+\small
+\setlength{\tabcolsep}{6pt}% tighter columns
+\begin{tabular}{llcccccccccc}
+\hline
+\multirow{2}{*}{Estimator} & \multirow{2}{*}{Method} & \multicolumn{5}{c}{ATE} & \multicolumn{5}{c}{ATT}\\
+ & & Bias & Var & RMSE & MAE & Coverage & Bias & Var & RMSE & MAE & Coverage\\
+\hline
+\multirow{4}{*}{WLS} & IPTW & 0.005 & 0.003 & 0.003 & 0.042 & 92.0\% & 0.006 & 0.004 & 0.004 & 0.048 & 91.0\%\\
+ & EB & 0.003 & 0.003 & 0.003 & 0.040 & 96.2\% & 0.007 & 0.003 & 0.003 & 0.044 & 95.3\%\\
+ & KOM & 0.012 & 0.002 & 0.002 & 0.038 & 94.0\% & 0.016 & 0.002 & 0.003 & 0.041 & 93.1\%\\
+ & TLF & 0.021 & 0.002 & 0.002 & 0.039 & 75.0\% & 0.024 & 0.002 & 0.003 & 0.041 & 85.8\%\\
+\cline{1-12}
+\multirow{4}{*}{DR} & IPTW & -0.002 & 0.003 & 0.003 & 0.041 & 91.9\% & -0.002 & 0.003 & 0.003 & 0.046 & 91.1\%\\
+ & EB & -0.001 & 0.002 & 0.002 & 0.038 & 93.2\% & 0.000 & 0.003 & 0.003 & 0.046 & 92.4\%\\
+ & KOM & -0.001 & 0.002 & 0.002 & 0.038 & 93.2\% & -0.001 & 0.003 & 0.003 & 0.043 & 92.9\%\\
+ & TLF & -0.001 & 0.002 & 0.002 & 0.039 & 81.7\% & -0.001 & 0.003 & 0.003 & 0.043 & 88.7\%\\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}
+\caption{Scenario: $n=500$, proportion treated: high; complexity: moderate.}
+\label{tab:metrics_n500_pthigh_cxmoderate}
+\centering
+\small
+\setlength{\tabcolsep}{6pt}% tighter columns
+\begin{tabular}{llcccccccccc}
+\hline
+\multirow{2}{*}{Estimator} & \multirow{2}{*}{Method} & \multicolumn{5}{c}{ATE} & \multicolumn{5}{c}{ATT}\\
+ & & Bias & Var & RMSE & MAE & Coverage & Bias & Var & RMSE & MAE & Coverage\\
+\hline
+\multirow{4}{*}{WLS} & IPTW & 0.013 & 0.005 & 0.005 & 0.058 & 86.2\% & 0.016 & 0.008 & 0.008 & 0.072 & 83.5\%\\
+ & EB & 0.007 & 0.003 & 0.003 & 0.041 & 96.9\% & 0.019 & 0.004 & 0.004 & 0.051 & 94.6\%\\
+ & KOM & 0.019 & 0.002 & 0.003 & 0.042 & 93.7\% & 0.025 & 0.003 & 0.004 & 0.049 & 92.2\%\\
+ & TLF & 0.044 & 0.002 & 0.004 & 0.051 & 54.2\% & 0.049 & 0.002 & 0.004 & 0.056 & 67.8\%\\
+\cline{1-12}
+\multirow{4}{*}{DR} & IPTW & -0.001 & 0.004 & 0.004 & 0.051 & 89.1\% & -0.002 & 0.007 & 0.007 & 0.062 & 87.5\%\\
+ & EB & -0.001 & 0.003 & 0.003 & 0.043 & 91.1\% & 0.001 & 0.005 & 0.005 & 0.054 & 90.1\%\\
+ & KOM & -0.001 & 0.003 & 0.003 & 0.043 & 91.1\% & -0.001 & 0.004 & 0.004 & 0.052 & 90.1\%\\
+ & TLF & -0.001 & 0.003 & 0.003 & 0.043 & 79.3\% & -0.001 & 0.004 & 0.004 & 0.051 & 84.9\%\\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}
+\caption{Scenario: $n=500$, proportion treated: high; complexity: high.}
+\label{tab:metrics_n500_pthigh_cxhigh}
+\centering
+\small
+\setlength{\tabcolsep}{6pt}% tighter columns
+\begin{tabular}{llcccccccccc}
+\hline
+\multirow{2}{*}{Estimator} & \multirow{2}{*}{Method} & \multicolumn{5}{c}{ATE} & \multicolumn{5}{c}{ATT}\\
+ & & Bias & Var & RMSE & MAE & Coverage & Bias & Var & RMSE & MAE & Coverage\\
+\hline
+\multirow{4}{*}{WLS} & IPTW & 0.032 & 0.014 & 0.015 & 0.096 & 69.3\% & 0.038 & 0.021 & 0.023 & 0.122 & 67.0\%\\
+ & EB & 0.015 & 0.003 & 0.003 & 0.043 & 97.5\% & 0.042 & 0.005 & 0.006 & 0.064 & 92.2\%\\
+ & KOM & 0.031 & 0.003 & 0.004 & 0.050 & 91.7\% & 0.040 & 0.004 & 0.006 & 0.062 & 89.8\%\\
+ & TLF & 0.079 & 0.002 & 0.008 & 0.080 & 21.2\% & 0.082 & 0.002 & 0.009 & 0.084 & 34.2\%\\
+\cline{1-12}
+\multirow{4}{*}{DR} & IPTW & 0.004 & 0.011 & 0.011 & 0.069 & 79.7\% & 0.005 & 0.018 & 0.018 & 0.088 & 78.0\%\\
+ & EB & 0.001 & 0.004 & 0.004 & 0.052 & 80.7\% & 0.003 & 0.007 & 0.007 & 0.069 & 79.0\%\\
+ & KOM & 0.001 & 0.004 & 0.004 & 0.052 & 80.6\% & 0.001 & 0.007 & 0.007 & 0.067 & 78.6\%\\
+ & TLF & 0.001 & 0.004 & 0.004 & 0.052 & 71.4\% & 0.002 & 0.007 & 0.007 & 0.066 & 74.0\%\\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}
+\caption{Scenario: $n=1000$, proportion treated: low; complexity: low.}
+\label{tab:metrics_n1000_ptlow_cxlow}
+\centering
+\small
+\setlength{\tabcolsep}{6pt}% tighter columns
+\begin{tabular}{llcccccccccc}
+\hline
+\multirow{2}{*}{Estimator} & \multirow{2}{*}{Method} & \multicolumn{5}{c}{ATE} & \multicolumn{5}{c}{ATT}\\
+ & & Bias & Var & RMSE & MAE & Coverage & Bias & Var & RMSE & MAE & Coverage\\
+\hline
+\multirow{4}{*}{WLS} & IPTW & 0.002 & 0.001 & 0.001 & 0.027 & 93.8\% & 0.010 & 0.001 & 0.001 & 0.029 & 93.4\%\\
+ & EB & 0.001 & 0.001 & 0.001 & 0.028 & 96.6\% & 0.003 & 0.001 & 0.001 & 0.029 & 97.1\%\\
+ & KOM & 0.006 & 0.001 & 0.001 & 0.026 & 96.0\% & 0.006 & 0.001 & 0.001 & 0.027 & 96.3\%\\
+ & TLF & 0.006 & 0.001 & 0.001 & 0.027 & 81.2\% & 0.006 & 0.001 & 0.001 & 0.029 & 93.5\%\\
+\cline{1-12}
+\multirow{4}{*}{DR} & IPTW & 0.000 & 0.001 & 0.001 & 0.027 & 93.6\% & -0.001 & 0.001 & 0.001 & 0.027 & 94.1\%\\
+ & EB & 0.000 & 0.001 & 0.001 & 0.026 & 94.2\% & 0.000 & 0.001 & 0.001 & 0.029 & 94.8\%\\
+ & KOM & 0.000 & 0.001 & 0.001 & 0.026 & 94.2\% & 0.000 & 0.001 & 0.001 & 0.027 & 94.7\%\\
+ & TLF & 0.000 & 0.001 & 0.001 & 0.027 & 81.1\% & 0.000 & 0.001 & 0.001 & 0.029 & 93.9\%\\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}
+\caption{Scenario: $n=1000$, proportion treated: low; complexity: moderate.}
+\label{tab:metrics_n1000_ptlow_cxmoderate}
+\centering
+\small
+\setlength{\tabcolsep}{6pt}% tighter columns
+\begin{tabular}{llcccccccccc}
+\hline
+\multirow{2}{*}{Estimator} & \multirow{2}{*}{Method} & \multicolumn{5}{c}{ATE} & \multicolumn{5}{c}{ATT}\\
+ & & Bias & Var & RMSE & MAE & Coverage & Bias & Var & RMSE & MAE & Coverage\\
+\hline
+\multirow{4}{*}{WLS} & IPTW & 0.006 & 0.002 & 0.002 & 0.031 & 93.5\% & 0.028 & 0.002 & 0.002 & 0.040 & 87.2\%\\
+ & EB & 0.004 & 0.001 & 0.001 & 0.028 & 98.3\% & 0.008 & 0.001 & 0.001 & 0.030 & 98.7\%\\
+ & KOM & 0.009 & 0.001 & 0.001 & 0.027 & 98.3\% & 0.008 & 0.001 & 0.001 & 0.028 & 98.5\%\\
+ & TLF & 0.051 & 0.001 & 0.003 & 0.052 & 36.1\% & 0.038 & 0.001 & 0.002 & 0.041 & 77.4\%\\
+\cline{1-12}
+\multirow{4}{*}{DR} & IPTW & 0.001 & 0.001 & 0.001 & 0.029 & 92.7\% & 0.000 & 0.001 & 0.001 & 0.029 & 94.3\%\\
+ & EB & 0.001 & 0.001 & 0.001 & 0.025 & 94.0\% & 0.001 & 0.001 & 0.001 & 0.029 & 95.8\%\\
+ & KOM & 0.001 & 0.001 & 0.001 & 0.025 & 94.0\% & 0.001 & 0.001 & 0.001 & 0.027 & 95.3\%\\
+ & TLF & 0.002 & 0.001 & 0.001 & 0.025 & 85.7\% & 0.002 & 0.001 & 0.001 & 0.026 & 94.3\%\\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}
+\caption{Scenario: $n=1000$, proportion treated: low; complexity: high.}
+\label{tab:metrics_n1000_ptlow_cxhigh}
+\centering
+\small
+\setlength{\tabcolsep}{6pt}% tighter columns
+\begin{tabular}{llcccccccccc}
+\hline
+\multirow{2}{*}{Estimator} & \multirow{2}{*}{Method} & \multicolumn{5}{c}{ATE} & \multicolumn{5}{c}{ATT}\\
+ & & Bias & Var & RMSE & MAE & Coverage & Bias & Var & RMSE & MAE & Coverage\\
+\hline
+\multirow{4}{*}{WLS} & IPTW & 0.009 & 0.003 & 0.004 & 0.046 & 91.2\% & 0.053 & 0.004 & 0.007 & 0.068 & 74.8\%\\
+ & EB & 0.012 & 0.001 & 0.001 & 0.031 & 99.6\% & 0.020 & 0.002 & 0.002 & 0.036 & 98.8\%\\
+ & KOM & 0.017 & 0.001 & 0.002 & 0.031 & 99.2\% & 0.012 & 0.001 & 0.002 & 0.032 & 99.1\%\\
+ & TLF & 0.089 & 0.001 & 0.009 & 0.089 & 2.3\% & 0.057 & 0.001 & 0.004 & 0.059 & 49.7\%\\
+\cline{1-12}
+\multirow{4}{*}{DR} & IPTW & 0.001 & 0.002 & 0.002 & 0.032 & 91.9\% & -0.004 & 0.002 & 0.003 & 0.036 & 93.4\%\\
+ & EB & 0.004 & 0.001 & 0.001 & 0.025 & 94.2\% & -0.001 & 0.002 & 0.002 & 0.031 & 95.7\%\\
+ & KOM & 0.004 & 0.001 & 0.001 & 0.025 & 94.2\% & -0.001 & 0.001 & 0.001 & 0.029 & 95.3\%\\
+ & TLF & 0.004 & 0.001 & 0.001 & 0.025 & 86.3\% & 0.000 & 0.001 & 0.001 & 0.027 & 92.8\%\\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}
+\caption{Scenario: $n=1000$, proportion treated: moderate; complexity: low.}
+\label{tab:metrics_n1000_ptmoderate_cxlow}
+\centering
+\small
+\setlength{\tabcolsep}{6pt}% tighter columns
+\begin{tabular}{llcccccccccc}
+\hline
+\multirow{2}{*}{Estimator} & \multirow{2}{*}{Method} & \multicolumn{5}{c}{ATE} & \multicolumn{5}{c}{ATT}\\
+ & & Bias & Var & RMSE & MAE & Coverage & Bias & Var & RMSE & MAE & Coverage\\
+\hline
+\multirow{4}{*}{WLS} & IPTW & 0.005 & 0.001 & 0.001 & 0.023 & 94.4\% & 0.008 & 0.001 & 0.001 & 0.027 & 93.3\%\\
+ & EB & 0.001 & 0.001 & 0.001 & 0.024 & 97.2\% & 0.004 & 0.001 & 0.001 & 0.027 & 96.6\%\\
+ & KOM & 0.005 & 0.001 & 0.001 & 0.022 & 96.5\% & 0.007 & 0.001 & 0.001 & 0.025 & 96.3\%\\
+ & TLF & 0.009 & 0.001 & 0.001 & 0.023 & 88.3\% & 0.010 & 0.001 & 0.001 & 0.026 & 91.2\%\\
+\cline{1-12}
+\multirow{4}{*}{DR} & IPTW & 0.000 & 0.001 & 0.001 & 0.022 & 95.1\% & 0.000 & 0.001 & 0.001 & 0.025 & 94.9\%\\
+ & EB & 0.000 & 0.001 & 0.001 & 0.022 & 95.1\% & 0.001 & 0.001 & 0.001 & 0.027 & 94.7\%\\
+ & KOM & 0.000 & 0.001 & 0.001 & 0.022 & 95.1\% & 0.001 & 0.001 & 0.001 & 0.024 & 95.2\%\\
+ & TLF & 0.001 & 0.001 & 0.001 & 0.022 & 91.1\% & 0.001 & 0.001 & 0.001 & 0.025 & 92.4\%\\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}
+\caption{Scenario: $n=1000$, proportion treated: moderate; complexity: moderate.}
+\label{tab:metrics_n1000_ptmoderate_cxmoderate}
+\centering
+\small
+\setlength{\tabcolsep}{6pt}% tighter columns
+\begin{tabular}{llcccccccccc}
+\hline
+\multirow{2}{*}{Estimator} & \multirow{2}{*}{Method} & \multicolumn{5}{c}{ATE} & \multicolumn{5}{c}{ATT}\\
+ & & Bias & Var & RMSE & MAE & Coverage & Bias & Var & RMSE & MAE & Coverage\\
+\hline
+\multirow{4}{*}{WLS} & IPTW & 0.012 & 0.001 & 0.001 & 0.027 & 91.8\% & 0.020 & 0.002 & 0.002 & 0.039 & 87.9\%\\
+ & EB & 0.003 & 0.001 & 0.001 & 0.023 & 98.3\% & 0.007 & 0.001 & 0.001 & 0.029 & 97.5\%\\
+ & KOM & 0.006 & 0.001 & 0.001 & 0.022 & 97.7\% & 0.008 & 0.001 & 0.001 & 0.027 & 97.4\%\\
+ & TLF & 0.048 & 0.001 & 0.003 & 0.049 & 37.0\% & 0.058 & 0.001 & 0.004 & 0.058 & 34.9\%\\
+\cline{1-12}
+\multirow{4}{*}{DR} & IPTW & 0.000 & 0.001 & 0.001 & 0.023 & 93.8\% & -0.001 & 0.001 & 0.001 & 0.030 & 93.2\%\\
+ & EB & 0.000 & 0.001 & 0.001 & 0.021 & 94.4\% & 0.000 & 0.001 & 0.001 & 0.029 & 94.4\%\\
+ & KOM & 0.000 & 0.001 & 0.001 & 0.021 & 94.4\% & 0.000 & 0.001 & 0.001 & 0.027 & 94.4\%\\
+ & TLF & 0.000 & 0.001 & 0.001 & 0.021 & 91.6\% & 0.001 & 0.001 & 0.001 & 0.026 & 93.4\%\\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}
+\caption{Scenario: $n=1000$, proportion treated: moderate; complexity: high.}
+\label{tab:metrics_n1000_ptmoderate_cxhigh}
+\centering
+\small
+\setlength{\tabcolsep}{6pt}% tighter columns
+\begin{tabular}{llcccccccccc}
+\hline
+\multirow{2}{*}{Estimator} & \multirow{2}{*}{Method} & \multicolumn{5}{c}{ATE} & \multicolumn{5}{c}{ATT}\\
+ & & Bias & Var & RMSE & MAE & Coverage & Bias & Var & RMSE & MAE & Coverage\\
+\hline
+\multirow{4}{*}{WLS} & IPTW & 0.024 & 0.003 & 0.003 & 0.046 & 82.9\% & 0.037 & 0.007 & 0.008 & 0.072 & 77.1\%\\
+ & EB & 0.005 & 0.001 & 0.001 & 0.023 & 99.5\% & 0.021 & 0.002 & 0.002 & 0.038 & 97.5\%\\
+ & KOM & 0.010 & 0.001 & 0.001 & 0.024 & 98.9\% & 0.012 & 0.002 & 0.002 & 0.033 & 98.5\%\\
+ & TLF & 0.080 & 0.001 & 0.007 & 0.080 & 3.0\% & 0.090 & 0.001 & 0.009 & 0.090 & 4.1\%\\
+\cline{1-12}
+\multirow{4}{*}{DR} & IPTW & -0.002 & 0.002 & 0.002 & 0.029 & 92.7\% & -0.005 & 0.005 & 0.005 & 0.045 & 92.3\%\\
+ & EB & 0.000 & 0.001 & 0.001 & 0.020 & 94.5\% & -0.001 & 0.002 & 0.002 & 0.034 & 93.9\%\\
+ & KOM & 0.000 & 0.001 & 0.001 & 0.020 & 94.5\% & -0.002 & 0.002 & 0.002 & 0.032 & 94.1\%\\
+ & TLF & 0.000 & 0.001 & 0.001 & 0.020 & 91.1\% & -0.002 & 0.001 & 0.001 & 0.028 & 91.9\%\\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}
+\caption{Scenario: $n=1000$, proportion treated: high; complexity: low.}
+\label{tab:metrics_n1000_pthigh_cxlow}
+\centering
+\small
+\setlength{\tabcolsep}{6pt}% tighter columns
+\begin{tabular}{llcccccccccc}
+\hline
+\multirow{2}{*}{Estimator} & \multirow{2}{*}{Method} & \multicolumn{5}{c}{ATE} & \multicolumn{5}{c}{ATT}\\
+ & & Bias & Var & RMSE & MAE & Coverage & Bias & Var & RMSE & MAE & Coverage\\
+\hline
+\multirow{4}{*}{WLS} & IPTW & 0.005 & 0.001 & 0.001 & 0.030 & 93.2\% & 0.007 & 0.002 & 0.002 & 0.034 & 92.4\%\\
+ & EB & 0.002 & 0.001 & 0.001 & 0.029 & 96.0\% & 0.004 & 0.002 & 0.002 & 0.032 & 95.4\%\\
+ & KOM & 0.008 & 0.001 & 0.001 & 0.027 & 94.7\% & 0.010 & 0.001 & 0.001 & 0.030 & 94.0\%\\
+ & TLF & 0.021 & 0.001 & 0.001 & 0.030 & 75.9\% & 0.024 & 0.001 & 0.002 & 0.033 & 80.2\%\\
+\cline{1-12}
+\multirow{4}{*}{DR} & IPTW & 0.000 & 0.001 & 0.001 & 0.029 & 93.5\% & 0.000 & 0.002 & 0.002 & 0.032 & 92.7\%\\
+ & EB & 0.000 & 0.001 & 0.001 & 0.028 & 94.0\% & 0.000 & 0.002 & 0.002 & 0.033 & 93.2\%\\
+ & KOM & 0.000 & 0.001 & 0.001 & 0.028 & 94.0\% & 0.000 & 0.001 & 0.001 & 0.031 & 93.8\%\\
+ & TLF & 0.000 & 0.001 & 0.001 & 0.028 & 85.6\% & 0.000 & 0.001 & 0.001 & 0.030 & 88.5\%\\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}
+\caption{Scenario: $n=1000$, proportion treated: high; complexity: moderate.}
+\label{tab:metrics_n1000_pthigh_cxmoderate}
+\centering
+\small
+\setlength{\tabcolsep}{6pt}% tighter columns
+\begin{tabular}{llcccccccccc}
+\hline
+\multirow{2}{*}{Estimator} & \multirow{2}{*}{Method} & \multicolumn{5}{c}{ATE} & \multicolumn{5}{c}{ATT}\\
+ & & Bias & Var & RMSE & MAE & Coverage & Bias & Var & RMSE & MAE & Coverage\\
+\hline
+\multirow{4}{*}{WLS} & IPTW & 0.012 & 0.003 & 0.003 & 0.042 & 87.9\% & 0.015 & 0.004 & 0.004 & 0.052 & 86.6\%\\
+ & EB & 0.004 & 0.001 & 0.001 & 0.031 & 97.6\% & 0.012 & 0.002 & 0.002 & 0.038 & 96.2\%\\
+ & KOM & 0.011 & 0.001 & 0.001 & 0.030 & 95.6\% & 0.014 & 0.002 & 0.002 & 0.035 & 94.8\%\\
+ & TLF & 0.043 & 0.001 & 0.003 & 0.046 & 44.8\% & 0.048 & 0.001 & 0.003 & 0.050 & 50.9\%\\
+\cline{1-12}
+\multirow{4}{*}{DR} & IPTW & -0.001 & 0.002 & 0.002 & 0.036 & 91.5\% & -0.001 & 0.003 & 0.003 & 0.044 & 90.9\%\\
+ & EB & 0.000 & 0.001 & 0.001 & 0.030 & 92.7\% & 0.001 & 0.002 & 0.002 & 0.038 & 92.7\%\\
+ & KOM & 0.000 & 0.001 & 0.001 & 0.030 & 92.7\% & 0.000 & 0.002 & 0.002 & 0.036 & 93.0\%\\
+ & TLF & 0.000 & 0.001 & 0.001 & 0.030 & 82.3\% & 0.001 & 0.002 & 0.002 & 0.035 & 85.4\%\\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}
+\caption{Scenario: $n=1000$, proportion treated: high; complexity: high.}
+\label{tab:metrics_n1000_pthigh_cxhigh}
+\centering
+\small
+\setlength{\tabcolsep}{6pt}% tighter columns
+\begin{tabular}{llcccccccccc}
+\hline
+\multirow{2}{*}{Estimator} & \multirow{2}{*}{Method} & \multicolumn{5}{c}{ATE} & \multicolumn{5}{c}{ATT}\\
+ & & Bias & Var & RMSE & MAE & Coverage & Bias & Var & RMSE & MAE & Coverage\\
+\hline
+\multirow{4}{*}{WLS} & IPTW & 0.026 & 0.009 & 0.010 & 0.078 & 73.0\% & 0.032 & 0.014 & 0.015 & 0.099 & 71.5\%\\
+ & EB & 0.010 & 0.002 & 0.002 & 0.034 & 98.3\% & 0.031 & 0.003 & 0.004 & 0.051 & 94.2\%\\
+ & KOM & 0.017 & 0.002 & 0.002 & 0.036 & 95.3\% & 0.023 & 0.003 & 0.003 & 0.046 & 94.0\%\\
+ & TLF & 0.077 & 0.001 & 0.007 & 0.077 & 8.7\% & 0.080 & 0.001 & 0.007 & 0.080 & 15.6\%\\
+\cline{1-12}
+\multirow{4}{*}{DR} & IPTW & -0.004 & 0.010 & 0.010 & 0.055 & 87.8\% & -0.006 & 0.018 & 0.018 & 0.070 & 87.0\%\\
+ & EB & -0.002 & 0.002 & 0.002 & 0.035 & 89.1\% & -0.001 & 0.004 & 0.004 & 0.049 & 88.6\%\\
+ & KOM & -0.002 & 0.002 & 0.002 & 0.035 & 89.1\% & -0.003 & 0.003 & 0.004 & 0.047 & 89.0\%\\
+ & TLF & -0.002 & 0.002 & 0.002 & 0.035 & 80.4\% & -0.003 & 0.003 & 0.003 & 0.044 & 82.0\%\\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}
+\caption{Scenario: $n=2000$, proportion treated: low; complexity: low.}
+\label{tab:metrics_n2000_ptlow_cxlow}
+\centering
+\small
+\setlength{\tabcolsep}{6pt}% tighter columns
+\begin{tabular}{llcccccccccc}
+\hline
+\multirow{2}{*}{Estimator} & \multirow{2}{*}{Method} & \multicolumn{5}{c}{ATE} & \multicolumn{5}{c}{ATT}\\
+ & & Bias & Var & RMSE & MAE & Coverage & Bias & Var & RMSE & MAE & Coverage\\
+\hline
+\multirow{4}{*}{WLS} & IPTW & 0.002 & 0.001 & 0.001 & 0.019 & 94.5\% & 0.010 & 0.001 & 0.001 & 0.021 & 92.9\%\\
+ & EB & 0.001 & 0.001 & 0.001 & 0.020 & 97.0\% & 0.002 & 0.001 & 0.001 & 0.021 & 97.0\%\\
+ & KOM & 0.004 & 0.000 & 0.001 & 0.018 & 96.6\% & 0.004 & 0.001 & 0.001 & 0.019 & 97.0\%\\
+ & TLF & 0.006 & 0.001 & 0.001 & 0.019 & 85.9\% & 0.007 & 0.001 & 0.001 & 0.020 & 93.0\%\\
+\cline{1-12}
+\multirow{4}{*}{DR} & IPTW & 0.000 & 0.001 & 0.001 & 0.019 & 94.2\% & 0.000 & 0.001 & 0.001 & 0.019 & 94.5\%\\
+ & EB & 0.000 & 0.000 & 0.000 & 0.018 & 94.7\% & 0.001 & 0.001 & 0.001 & 0.021 & 94.7\%\\
+ & KOM & 0.000 & 0.000 & 0.000 & 0.018 & 94.7\% & 0.000 & 0.001 & 0.001 & 0.019 & 95.0\%\\
+ & TLF & 0.001 & 0.001 & 0.001 & 0.019 & 87.4\% & 0.001 & 0.001 & 0.001 & 0.020 & 93.3\%\\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}
+\caption{Scenario: $n=2000$, proportion treated: low; complexity: moderate.}
+\label{tab:metrics_n2000_ptlow_cxmoderate}
+\centering
+\small
+\setlength{\tabcolsep}{6pt}% tighter columns
+\begin{tabular}{llcccccccccc}
+\hline
+\multirow{2}{*}{Estimator} & \multirow{2}{*}{Method} & \multicolumn{5}{c}{ATE} & \multicolumn{5}{c}{ATT}\\
+ & & Bias & Var & RMSE & MAE & Coverage & Bias & Var & RMSE & MAE & Coverage\\
+\hline
+\multirow{4}{*}{WLS} & IPTW & 0.005 & 0.001 & 0.001 & 0.022 & 94.6\% & 0.026 & 0.001 & 0.002 & 0.032 & 83.4\%\\
+ & EB & 0.002 & 0.001 & 0.001 & 0.021 & 98.4\% & 0.002 & 0.001 & 0.001 & 0.022 & 98.8\%\\
+ & KOM & 0.006 & 0.001 & 0.001 & 0.019 & 98.2\% & 0.003 & 0.001 & 0.001 & 0.020 & 98.7\%\\
+ & TLF & 0.050 & 0.000 & 0.003 & 0.050 & 17.9\% & 0.035 & 0.001 & 0.002 & 0.036 & 61.5\%\\
+\cline{1-12}
+\multirow{4}{*}{DR} & IPTW & 0.000 & 0.001 & 0.001 & 0.020 & 93.5\% & -0.002 & 0.001 & 0.001 & 0.021 & 94.7\%\\
+ & EB & 0.000 & 0.000 & 0.000 & 0.018 & 94.3\% & -0.001 & 0.001 & 0.001 & 0.022 & 95.7\%\\
+ & KOM & 0.000 & 0.000 & 0.000 & 0.018 & 94.3\% & -0.001 & 0.001 & 0.001 & 0.019 & 95.4\%\\
+ & TLF & 0.000 & 0.001 & 0.001 & 0.018 & 88.9\% & 0.001 & 0.001 & 0.001 & 0.019 & 93.9\%\\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}
+\caption{Scenario: $n=2000$, proportion treated: low; complexity: high.}
+\label{tab:metrics_n2000_ptlow_cxhigh}
+\centering
+\small
+\setlength{\tabcolsep}{6pt}% tighter columns
+\begin{tabular}{llcccccccccc}
+\hline
+\multirow{2}{*}{Estimator} & \multirow{2}{*}{Method} & \multicolumn{5}{c}{ATE} & \multicolumn{5}{c}{ATT}\\
+ & & Bias & Var & RMSE & MAE & Coverage & Bias & Var & RMSE & MAE & Coverage\\
+\hline
+\multirow{4}{*}{WLS} & IPTW & 0.007 & 0.002 & 0.002 & 0.035 & 92.1\% & 0.053 & 0.002 & 0.005 & 0.059 & 65.2\%\\
+ & EB & 0.007 & 0.001 & 0.001 & 0.023 & 99.6\% & 0.010 & 0.001 & 0.001 & 0.026 & 99.3\%\\
+ & KOM & 0.014 & 0.001 & 0.001 & 0.024 & 99.2\% & 0.007 & 0.001 & 0.001 & 0.023 & 99.5\%\\
+ & TLF & 0.088 & 0.000 & 0.008 & 0.088 & 0.0\% & 0.056 & 0.001 & 0.004 & 0.056 & 22.7\%\\
+\cline{1-12}
+\multirow{4}{*}{DR} & IPTW & 0.001 & 0.001 & 0.001 & 0.023 & 93.0\% & -0.004 & 0.001 & 0.001 & 0.025 & 94.5\%\\
+ & EB & 0.003 & 0.000 & 0.000 & 0.018 & 94.5\% & -0.002 & 0.001 & 0.001 & 0.024 & 95.3\%\\
+ & KOM & 0.003 & 0.000 & 0.000 & 0.018 & 94.5\% & -0.001 & 0.001 & 0.001 & 0.022 & 95.2\%\\
+ & TLF & 0.003 & 0.001 & 0.001 & 0.018 & 88.3\% & -0.001 & 0.001 & 0.001 & 0.019 & 90.7\%\\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}
+\caption{Scenario: $n=2000$, proportion treated: moderate; complexity: low.}
+\label{tab:metrics_n2000_ptmoderate_cxlow}
+\centering
+\small
+\setlength{\tabcolsep}{6pt}% tighter columns
+\begin{tabular}{llcccccccccc}
+\hline
+\multirow{2}{*}{Estimator} & \multirow{2}{*}{Method} & \multicolumn{5}{c}{ATE} & \multicolumn{5}{c}{ATT}\\
+ & & Bias & Var & RMSE & MAE & Coverage & Bias & Var & RMSE & MAE & Coverage\\
+\hline
+\multirow{4}{*}{WLS} & IPTW & 0.005 & 0.000 & 0.000 & 0.016 & 93.9\% & 0.008 & 0.001 & 0.001 & 0.020 & 92.6\%\\
+ & EB & 0.001 & 0.000 & 0.000 & 0.016 & 96.9\% & 0.002 & 0.001 & 0.001 & 0.019 & 96.8\%\\
+ & KOM & 0.003 & 0.000 & 0.000 & 0.015 & 96.6\% & 0.004 & 0.000 & 0.000 & 0.017 & 96.6\%\\
+ & TLF & 0.010 & 0.000 & 0.000 & 0.018 & 87.6\% & 0.010 & 0.000 & 0.001 & 0.019 & 89.1\%\\
+\cline{1-12}
+\multirow{4}{*}{DR} & IPTW & 0.000 & 0.000 & 0.000 & 0.015 & 94.6\% & 0.000 & 0.000 & 0.000 & 0.018 & 94.3\%\\
+ & EB & 0.000 & 0.000 & 0.000 & 0.015 & 94.8\% & 0.000 & 0.001 & 0.001 & 0.019 & 94.9\%\\
+ & KOM & 0.000 & 0.000 & 0.000 & 0.015 & 94.8\% & 0.000 & 0.000 & 0.000 & 0.017 & 94.8\%\\
+ & TLF & 0.000 & 0.000 & 0.000 & 0.015 & 92.5\% & 0.001 & 0.000 & 0.000 & 0.018 & 92.2\%\\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}
+\caption{Scenario: $n=2000$, proportion treated: moderate; complexity: moderate.}
+\label{tab:metrics_n2000_ptmoderate_cxmoderate}
+\centering
+\small
+\setlength{\tabcolsep}{6pt}% tighter columns
+\begin{tabular}{llcccccccccc}
+\hline
+\multirow{2}{*}{Estimator} & \multirow{2}{*}{Method} & \multicolumn{5}{c}{ATE} & \multicolumn{5}{c}{ATT}\\
+ & & Bias & Var & RMSE & MAE & Coverage & Bias & Var & RMSE & MAE & Coverage\\
+\hline
+\multirow{4}{*}{WLS} & IPTW & 0.012 & 0.001 & 0.001 & 0.021 & 89.6\% & 0.020 & 0.001 & 0.001 & 0.031 & 85.7\%\\
+ & EB & 0.001 & 0.000 & 0.000 & 0.017 & 98.5\% & 0.004 & 0.001 & 0.001 & 0.022 & 98.3\%\\
+ & KOM & 0.004 & 0.000 & 0.000 & 0.016 & 98.0\% & 0.004 & 0.001 & 0.001 & 0.019 & 97.9\%\\
+ & TLF & 0.050 & 0.000 & 0.003 & 0.050 & 13.6\% & 0.058 & 0.000 & 0.004 & 0.058 & 9.8\%\\
+\cline{1-12}
+\multirow{4}{*}{DR} & IPTW & 0.000 & 0.000 & 0.000 & 0.017 & 94.4\% & -0.001 & 0.001 & 0.001 & 0.022 & 93.8\%\\
+ & EB & 0.000 & 0.000 & 0.000 & 0.015 & 94.7\% & 0.000 & 0.001 & 0.001 & 0.021 & 95.0\%\\
+ & KOM & 0.000 & 0.000 & 0.000 & 0.015 & 94.7\% & 0.000 & 0.001 & 0.001 & 0.019 & 94.9\%\\
+ & TLF & 0.000 & 0.000 & 0.000 & 0.015 & 92.7\% & 0.001 & 0.001 & 0.001 & 0.018 & 93.1\%\\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}
+\caption{Scenario: $n=2000$, proportion treated: moderate; complexity: high.}
+\label{tab:metrics_n2000_ptmoderate_cxhigh}
+\centering
+\small
+\setlength{\tabcolsep}{6pt}% tighter columns
+\begin{tabular}{llcccccccccc}
+\hline
+\multirow{2}{*}{Estimator} & \multirow{2}{*}{Method} & \multicolumn{5}{c}{ATE} & \multicolumn{5}{c}{ATT}\\
+ & & Bias & Var & RMSE & MAE & Coverage & Bias & Var & RMSE & MAE & Coverage\\
+\hline
+\multirow{4}{*}{WLS} & IPTW & 0.024 & 0.002 & 0.002 & 0.036 & 80.2\% & 0.039 & 0.004 & 0.005 & 0.059 & 74.6\%\\
+ & EB & 0.002 & 0.000 & 0.000 & 0.017 & 99.6\% & 0.012 & 0.001 & 0.001 & 0.027 & 98.7\%\\
+ & KOM & 0.007 & 0.000 & 0.000 & 0.017 & 99.1\% & 0.006 & 0.001 & 0.001 & 0.025 & 99.1\%\\
+ & TLF & 0.084 & 0.000 & 0.007 & 0.084 & 0.1\% & 0.090 & 0.000 & 0.008 & 0.090 & 0.1\%\\
+\cline{1-12}
+\multirow{4}{*}{DR} & IPTW & -0.002 & 0.001 & 0.001 & 0.021 & 94.6\% & -0.004 & 0.003 & 0.003 & 0.033 & 93.6\%\\
+ & EB & -0.001 & 0.000 & 0.000 & 0.014 & 95.5\% & -0.002 & 0.001 & 0.001 & 0.025 & 95.1\%\\
+ & KOM & -0.001 & 0.000 & 0.000 & 0.014 & 95.5\% & -0.002 & 0.001 & 0.001 & 0.023 & 95.2\%\\
+ & TLF & 0.000 & 0.000 & 0.000 & 0.014 & 93.4\% & -0.003 & 0.001 & 0.001 & 0.019 & 92.9\%\\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}
+\caption{Scenario: $n=2000$, proportion treated: high; complexity: low.}
+\label{tab:metrics_n2000_pthigh_cxlow}
+\centering
+\small
+\setlength{\tabcolsep}{6pt}% tighter columns
+\begin{tabular}{llcccccccccc}
+\hline
+\multirow{2}{*}{Estimator} & \multirow{2}{*}{Method} & \multicolumn{5}{c}{ATE} & \multicolumn{5}{c}{ATT}\\
+ & & Bias & Var & RMSE & MAE & Coverage & Bias & Var & RMSE & MAE & Coverage\\
+\hline
+\multirow{4}{*}{WLS} & IPTW & 0.006 & 0.001 & 0.001 & 0.021 & 93.8\% & 0.007 & 0.001 & 0.001 & 0.024 & 93.0\%\\
+ & EB & 0.001 & 0.001 & 0.001 & 0.021 & 96.9\% & 0.003 & 0.001 & 0.001 & 0.023 & 96.6\%\\
+ & KOM & 0.005 & 0.001 & 0.001 & 0.019 & 95.8\% & 0.006 & 0.001 & 0.001 & 0.021 & 95.3\%\\
+ & TLF & 0.006 & 0.001 & 0.001 & 0.020 & 84.4\% & 0.006 & 0.001 & 0.001 & 0.022 & 83.0\%\\
+\cline{1-12}
+\multirow{4}{*}{DR} & IPTW & 0.000 & 0.001 & 0.001 & 0.020 & 94.2\% & 0.000 & 0.001 & 0.001 & 0.022 & 94.0\%\\
+ & EB & 0.000 & 0.001 & 0.001 & 0.019 & 94.6\% & 0.000 & 0.001 & 0.001 & 0.023 & 94.5\%\\
+ & KOM & 0.000 & 0.001 & 0.001 & 0.019 & 94.6\% & 0.000 & 0.001 & 0.001 & 0.021 & 94.5\%\\
+ & TLF & 0.000 & 0.001 & 0.001 & 0.020 & 85.3\% & 0.001 & 0.001 & 0.001 & 0.022 & 83.9\%\\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}
+\caption{Scenario: $n=2000$, proportion treated: high; complexity: moderate.}
+\label{tab:metrics_n2000_pthigh_cxmoderate}
+\centering
+\small
+\setlength{\tabcolsep}{6pt}% tighter columns
+\begin{tabular}{llcccccccccc}
+\hline
+\multirow{2}{*}{Estimator} & \multirow{2}{*}{Method} & \multicolumn{5}{c}{ATE} & \multicolumn{5}{c}{ATT}\\
+ & & Bias & Var & RMSE & MAE & Coverage & Bias & Var & RMSE & MAE & Coverage\\
+\hline
+\multirow{4}{*}{WLS} & IPTW & 0.013 & 0.001 & 0.001 & 0.030 & 89.1\% & 0.016 & 0.002 & 0.002 & 0.037 & 88.2\%\\
+ & EB & 0.002 & 0.001 & 0.001 & 0.022 & 98.3\% & 0.007 & 0.001 & 0.001 & 0.026 & 97.7\%\\
+ & KOM & 0.006 & 0.001 & 0.001 & 0.021 & 97.3\% & 0.008 & 0.001 & 0.001 & 0.024 & 97.0\%\\
+ & TLF & 0.043 & 0.000 & 0.002 & 0.043 & 30.2\% & 0.048 & 0.001 & 0.003 & 0.048 & 28.3\%\\
+\cline{1-12}
+\multirow{4}{*}{DR} & IPTW & -0.001 & 0.001 & 0.001 & 0.024 & 93.4\% & -0.001 & 0.001 & 0.001 & 0.030 & 93.3\%\\
+ & EB & 0.000 & 0.001 & 0.001 & 0.020 & 94.7\% & 0.000 & 0.001 & 0.001 & 0.026 & 94.6\%\\
+ & KOM & 0.000 & 0.001 & 0.001 & 0.020 & 94.7\% & 0.000 & 0.001 & 0.001 & 0.024 & 94.8\%\\
+ & TLF & 0.000 & 0.001 & 0.001 & 0.020 & 88.0\% & 0.001 & 0.001 & 0.001 & 0.023 & 88.6\%\\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}
+\caption{Scenario: $n=2000$, proportion treated: high; complexity: high.}
+\label{tab:metrics_n2000_pthigh_cxhigh}
+\centering
+\small
+\setlength{\tabcolsep}{6pt}% tighter columns
+\begin{tabular}{llcccccccccc}
+\hline
+\multirow{2}{*}{Estimator} & \multirow{2}{*}{Method} & \multicolumn{5}{c}{ATE} & \multicolumn{5}{c}{ATT}\\
+ & & Bias & Var & RMSE & MAE & Coverage & Bias & Var & RMSE & MAE & Coverage\\
+\hline
+\multirow{4}{*}{WLS} & IPTW & 0.025 & 0.006 & 0.007 & 0.062 & 74.8\% & 0.031 & 0.009 & 0.010 & 0.079 & 75.0\%\\
+ & EB & 0.004 & 0.001 & 0.001 & 0.025 & 99.1\% & 0.020 & 0.002 & 0.002 & 0.038 & 96.5\%\\
+ & KOM & 0.008 & 0.001 & 0.001 & 0.026 & 97.8\% & 0.012 & 0.002 & 0.002 & 0.034 & 97.2\%\\
+ & TLF & 0.075 & 0.001 & 0.006 & 0.075 & 1.9\% & 0.078 & 0.001 & 0.007 & 0.078 & 2.8\%\\
+\cline{1-12}
+\multirow{4}{*}{DR} & IPTW & -0.004 & 0.004 & 0.004 & 0.040 & 92.0\% & -0.006 & 0.007 & 0.007 & 0.051 & 91.9\%\\
+ & EB & -0.003 & 0.001 & 0.001 & 0.024 & 92.8\% & -0.003 & 0.002 & 0.002 & 0.036 & 93.1\%\\
+ & KOM & -0.003 & 0.001 & 0.001 & 0.024 & 92.8\% & -0.005 & 0.002 & 0.002 & 0.034 & 93.1\%\\
+ & TLF & -0.003 & 0.001 & 0.001 & 0.024 & 85.7\% & -0.004 & 0.001 & 0.001 & 0.030 & 86.1\%\\
+\hline
+\end{tabular}
+\end{table}
+
