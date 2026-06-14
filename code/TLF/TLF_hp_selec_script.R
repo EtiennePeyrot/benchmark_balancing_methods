@@ -76,18 +76,14 @@ for(row1 in 1:nrow(pars1)) {
   sigmas = sigma_heur * sigmas_prod
   
   try({
-    res["ATE", n, prop_trt, confdg_lvl, , , "grad CBSR", i] =
-      kernel.hp.gridsearch(T = A, X = X, alphas = -1, betas = -1,
-                           lambdas = lambdas, sigmas = sigmas,
-                           energy = .9, intercept = TRUE,
-                           nbr_fold = 5, best = F)
-  })
-  try({
-    res["ATT", n, prop_trt, confdg_lvl, , , "grad CBSR", i] =
-      kernel.hp.gridsearch(T = A, X = X, alphas = 0, betas = -1,
-                           lambdas = lambdas, sigmas = sigmas,
-                           energy = .9, intercept = TRUE,
-                           nbr_fold = 5, best = F)
+    tmp = kernel.hp.gridsearch(T = A, X = X,
+                               alphas = -1:0, betas = c(-1,-1),
+                               lambdas = lambdas, sigmas = sigmas,
+                               energy = .9, intercept = TRUE,
+                               nbr_fold = 5, best = F)
+     
+    res["ATE", n, prop_trt, confdg_lvl, , , "grad CBSR", i] = tmp[ , , "alpha=-1; beta=-1"]
+    res["ATT", n, prop_trt, confdg_lvl, , , "grad CBSR", i] = tmp[ , , "alpha=0; beta=-1"]
   })
   
   sigma_ = max(sigmas) + 1

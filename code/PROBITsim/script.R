@@ -3,16 +3,18 @@ graphics.off()
 set.seed(123)
 
 # file import
-
-source("../EB/EB_weight.R")
 source("../IPTW/IPTW_weight.R")
 source("../IPTW/confidence_interval.R")
-source("../KOM/KOM_weight.R")
+source("../CBPS/CBPS_weight.R")
+source("../CBPS/confidence_interval.R")
+source("../EB/EB_weight.R")
 source("../KOM/KOM_hp_selec.R")
+source("../KOM/KOM_weight.R")
 source("../KOM/confidence_interval.R")
 source("../TLF/TLF_weight.R")
 source("../TLF/confidence_interval.R")
 source("confidence_interval.R")
+
 
 # library import
 
@@ -21,6 +23,7 @@ library(foreign) # import dta file
 # data import
 
 probitsim = as.data.frame(read.dta("PROBITsim.dta", convert.factors = FALSE))
+
 
 
 #### pre processing ####
@@ -49,12 +52,6 @@ X = X[ ,"factor(location)4" != colnames(X)] # location has 4 levels so only need
 bin_var = apply(X, 2, function(x) length(unique(x))<3)
 X[ ,!bin_var] = scale(X[ ,!bin_var])
 
-# response surface
-rs = lapply(list("y0"=!A, "y1"=A), function(subset)
-  lm(Y ~ X, subset = subset)) |>
-  lapply(predict, newdata=probitsim, type="response") |>
-  lapply(as.vector)
-
 outcome_block = outcome_blocks_linear(Y = Y, A = A, X = X)
 
 
@@ -66,9 +63,26 @@ iptw_wls_att  = wls_ci(Y, A, ps_block = ps_block_iptw, target = "ATT", alpha = 0
 iptw_dr_ate   = dr_ci(A = A, outcome_block = outcome_block, ps_block = ps_block_iptw, target = "ATE", alpha = 0.05)
 iptw_dr_att   = dr_ci(A = A, outcome_block = outcome_block, ps_block = ps_block_iptw, target = "ATT", alpha = 0.05)
 
+# CBPS just-identified
+cbpsji = CBPS_JI_weight(X = X, A = A)
+ps_block_cbpsji_ate = propensity_blocks_logit_CBPS_JI(A = A, U = cbpsji$U, eta = cbpsji$eta$ATE)
+ps_block_cbpsji_att = propensity_blocks_logit_CBPS_JI(A = A, U = cbpsji$U, eta = cbpsji$eta$ATT)
+cbpsji_wls_ate = wls_ci(Y, A, ps_block = ps_block_cbpsji_ate, target = "ATE", alpha = 0.05)
+cbpsji_wls_att = wls_ci(Y, A, ps_block = ps_block_cbpsji_att, target = "ATT", alpha = 0.05)
+cbpsji_dr_ate  = dr_ci(A = A, outcome_block = outcome_block, ps_block = ps_block_cbpsji_ate, target = "ATE", alpha = 0.05)
+cbpsji_dr_att  = dr_ci(A = A, outcome_block = outcome_block, ps_block = ps_block_cbpsji_att, target = "ATT", alpha = 0.05)
+
+
+# CBPS over-identified
+cbpsoi = CBPS_OI_weight(X = X, A = A, twostep = FALSE)
+cbpsoi_wls_ate = wls_ci_optimist(Y, A, W = cbpsoi$W$ATE, alpha = 0.05)
+cbpsoi_wls_att = wls_ci_optimist(Y, A, W = cbpsoi$W$ATT, alpha = 0.05)
+cbpsoi_dr_ate  = dr_ci_optimist(A = A, outcome_block = outcome_block, W = cbpsoi$W$ATE, target = "ATE", alpha = 0.05)
+cbpsoi_dr_att  = dr_ci_optimist(A = A, outcome_block = outcome_block, W = cbpsoi$W$ATT, target = "ATT", alpha = 0.05)
+
 
 # EB
-eb = EB(X = `colnames<-`(X,1:ncol(X)), A = A)
+eb = EB(X = `colnames<-`(X, paste0("X",1:ncol(X))), A = A)
 eb_ate = pmax(eb$ATE, 0); eb_att = pmax(eb$ATT, 0)
 eb_wls_ate  = wls_ci_optimist(Y, A, W = eb_ate, alpha = 0.05)
 eb_wls_att  = wls_ci_optimist(Y, A, W = eb_att, alpha = 0.05)
@@ -88,9 +102,6 @@ kom_dr_att   = dr_ci_optimist(A = A, outcome_block = outcome_block, W = kom_att,
 
 
 # TLF
-
-
-
 if(inherits(try(load("TLF_param.RData")), "try-error")) {
   D1 = as.matrix(dist(X, method = "manhattan", diag = TRUE, upper = TRUE))
   sigma = 1 / median(D1)
@@ -116,7 +127,3 @@ tlf_wls_ate = wls_ci(Y, A, ps_block = ps_block_tlf_ate, target = "ATE", alpha = 
 tlf_wls_att = wls_ci(Y, A, ps_block = ps_block_tlf_att, target = "ATT", alpha = 0.05)
 tlf_dr_ate  = dr_ci(A = A, outcome_block = outcome_block, ps_block = ps_block_tlf_ate, target = "ATE", alpha = 0.05)
 tlf_dr_att  = dr_ci(A = A, outcome_block = outcome_block, ps_block = ps_block_tlf_att, target = "ATT", alpha = 0.05)
-
-data = as.list(environment())
-save(data, file="probitsim_output.RData")
-

@@ -42,11 +42,11 @@ outcome_blocks_binomial = function(Y, A, X) {
 
 propensity_blocks_cbpstlf = function(A, U, eta, d, lambda, target=c("ATE","ATT")) {
   target = match.arg(target)
-  f = as.vector(U %*% eta)
-  e = plogis(f)
+  eta_lin = as.vector(U %*% eta)
+  e = plogis(eta_lin)
   n = length(A)
   
-  r = e / (1 - e)
+  r = exp(eta_lin)
   if (target == "ATE") {
     dS_deta = A / e - (1 - A) / (1 - e)
     coeff = -A / r - (1 - A) * r
@@ -63,7 +63,11 @@ propensity_blocks_cbpstlf = function(A, U, eta, d, lambda, target=c("ATE","ATT")
   
   # Build bread matrix block
   J_eta_eta = crossprod(U, coeff * U) / n - 2 * lambda / n * diag(d)
-  list(e = e, psi_eta_i = psi_eta_i, J_eta_eta = J_eta_eta, Xeta = U)
+  list(e = e,
+       eta_lin = eta_lin,
+       psi_eta_i = psi_eta_i,
+       J_eta_eta = J_eta_eta,
+       Xeta = U)
 }
 
 
@@ -75,19 +79,20 @@ wls_ci = function(Y, A, ps_block, target=c("ATE","ATT"), alpha=0.05) {
   
   ## propensity block
   e         = ps_block$e
+  eta_lin   = ps_block$eta_lin
   psi_eta_i = ps_block$psi_eta_i
   J_eta_eta = ps_block$J_eta_eta
   Xeta      = ps_block$Xeta
   p_eta     = ncol(Xeta)
   
   ## weights and dw/deta
-  r = e / (1 - e)
+  r = exp(eta_lin) # e / (1 - e)
   if (target == "ATE") {
-    w = A / e + (1 - A) / (1 - e)
-    dw_detai = -A / r + (1 - A) * r
+    w = 1 / ifelse(A == 1, e, 1 - e)
+    dw_detai = (1 - 2 * A) * exp((1 - 2 * A) * eta_lin)
   } else {
-    w = A + (1 - A) * r
-    dw_detai = (1 - A) * r
+    w = ifelse(A == 1, 1, r)
+    dw_detai = ifelse(A == 1, 0, r)
   }
   
   ## WLS estimate
@@ -96,14 +101,12 @@ wls_ci = function(Y, A, ps_block, target=c("ATE","ATT"), alpha=0.05) {
   tau = solve(BtWB, BtWy)
   resid = as.numeric(Y - B %*% tau)
   
-  
   # Build bread matrix J
-  J_tau_tau = - BtWB / n
+  J_tau_tau = -BtWB / n
   J_tau_eta = crossprod(B, (resid * dw_detai) * Xeta) / n
-  J_eta_eta = ps_block$J_eta_eta
   
-  J = rbind( cbind(J_tau_tau    , J_tau_eta),
-             cbind(zero(p_eta,2), J_eta_eta) )
+  J = rbind(cbind(J_tau_tau    , J_tau_eta),
+            cbind(zero(p_eta,2), J_eta_eta) )
   
   
   # build meat matrix M
@@ -113,16 +116,19 @@ wls_ci = function(Y, A, ps_block, target=c("ATE","ATT"), alpha=0.05) {
   
   
   # Sandwich variance
-  Jinv = solve(J)
-  V = (1 / n) * Jinv %*% M %*% t(Jinv)
+  Jinv = try(solve(J), silent = T)
+  se_tau = if(inherits(Jinv, "try-error")) NA else {
+    V = (1 / n) * Jinv %*% M %*% t(Jinv)
+    se_tau = sqrt(V[2, 2])
+  }
   tau_hat = tau[2]
-  se_tau = sqrt(V[2, 2])
   z = qnorm(1 - alpha / 2)
   ci = c(lower = tau_hat - z * se_tau,
          upper = tau_hat + z * se_tau)
   
   list(tau = tau_hat, ci = ci, se = se_tau)
 }
+
 
 
 dr_ci = function(A, outcome_block, ps_block, target = c("ATE","ATT"), alpha = 0.05) {
@@ -146,24 +152,25 @@ dr_ci = function(A, outcome_block, ps_block, target = c("ATE","ATT"), alpha = 0.
   pi_hat    = outcome_block$pi_hat
   
   e         = ps_block$e
+  eta_lin   = ps_block$eta_lin
   psi_eta_i = ps_block$psi_eta_i
   J_eta_eta = ps_block$J_eta_eta
   Xeta      = ps_block$Xeta
   p_eta     = ncol(Xeta)
   
   # Build bread matrix J
-  r = e / (1 - e)
+  r = exp(eta_lin) # e / (1 - e)
   
   if (target == "ATE") {
     J_tau_tau = matrix(-1, 1, 1)
-    J_tau_b0 = colMeans( (-1 + (1 - A) / (1 - e)) * m0pZ )
-    J_tau_b1 = colMeans( (1 - A / e) * m1pZ )
-    coeff_eta = -A * resid1 / r - (1 - A) * resid0 * r
+    J_tau_b0 = colMeans( ifelse(A == 1, -1, r) * m0pZ )
+    J_tau_b1 = colMeans( ifelse(A == 1, -exp(-eta_lin), 1) * m1pZ )
+    coeff_eta = - ifelse(A == 1, resid1, resid0) * exp((1 - 2 * A) * eta_lin)
   } else { # ATT
     J_tau_tau = matrix(-pi_hat, 1, 1)
-    J_tau_b0 = -colMeans( (A - (1 - A) * r) * m0pZ )
+    J_tau_b0 = -colMeans( ifelse(A == 1, 1, -r) * m0pZ )
     J_tau_b1 = rep(0, p_z)
-    coeff_eta = - (1 - A) * resid0 * r
+    coeff_eta = ifelse(A == 1, 0, - resid0 * r)
   }
   J_tau_b0  = matrix(J_tau_b0, nrow = 1)
   J_tau_b1  = matrix(J_tau_b1, nrow = 1)
@@ -179,11 +186,11 @@ dr_ci = function(A, outcome_block, ps_block, target = c("ATE","ATT"), alpha = 0.
   
   # Build meat matrix M
   if (target == "ATE") {
-    psi_tau_i = (m1 - m0) + (A * resid1 / e - (1 - A) * resid0 / (1 - e))
+    psi_tau_i = (m1 - m0) + ifelse(A == 1, resid1, resid0) * (2 * A - 1) * (1 + exp((1 - 2 * A) * eta_lin))
     tau_hat = mean(psi_tau_i)
     psi_tau = psi_tau_i - tau_hat
   } else { # ATT
-    psi_tau_i = (A - (1 - A) * r) * resid0
+    psi_tau_i = ifelse(A == 1, 1, -r) * resid0
     tau_hat = sum(psi_tau_i) / sum(A)
     psi_tau = psi_tau_i - A * tau_hat
   }
@@ -191,12 +198,14 @@ dr_ci = function(A, outcome_block, ps_block, target = c("ATE","ATT"), alpha = 0.
   M = crossprod(cbind(psi_tau, psi_b1_i, psi_b0_i, psi_eta_i)) / n
   
   # Sandwich variance for tau
-  Jinv = solve(J)
-  Vcov = (1 / n) * Jinv %*% M %*% t(Jinv)
-  
-  se_tau = sqrt(Vcov[1, 1])
+  Jinv = try(solve(J), silent=T)
+  se_tau = if(inherits(Jinv, "try-error")) NA else {
+    Vcov = (1 / n) * Jinv %*% M %*% t(Jinv)
+    se_tau = sqrt(Vcov[1, 1])
+  }
   z = qnorm(1 - alpha / 2)
   ci = c(lower = tau_hat - z * se_tau,
          upper = tau_hat + z * se_tau)
   list(tau = tau_hat, ci = ci, se = se_tau)
 }
+
