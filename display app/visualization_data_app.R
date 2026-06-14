@@ -10,6 +10,7 @@ library(tibble)
 # ---- Helpers ----
 expit = function(x) exp(x) / (1 + exp(x))
 logit = function(p) log(p / (1 - p))
+.clip = function(x,l,u) pmin(pmax(x, l), u)
 
 # Fixed coefficients from your DGM
 b_vec = c(0.8, -0.25, 0.6, -0.4, -0.8, -0.5, 0.7, 0, 0, 0)
@@ -37,6 +38,7 @@ ui = fluidPage(
       sliderInput("g", "Confounding strength g:", min = 0, max = 5, value = 2.25, step = 0.05),
       sliderInput("ptarget", "Target proportion treated:", min = 0.05, max = 0.95, value = 0.50, step = 0.05),
       sliderInput("alpha", "Alpha (assess strong overlap):", min = 0.00, max = 0.15, value = 0.01, step = 0.01),
+      sliderInput("effect", "Constant treatment effect modifier:", min = 0.00, max = 0.30, value = 0.00, step = 0.01),
       actionButton("go", "Generate / Update")
     ),
     mainPanel(
@@ -108,17 +110,20 @@ server = function(input, output, session) {
     # Outcome generation (no treatment effect)
     lin_y = as.numeric(X %*% a_vec + 0.5 * X[,3] * (X[,4]^2))
     # Calibrate a0 so that mean(Y) ≈ 25%
-    fn_a0 = function(a0) mean(expit(a0 + g * lin_y)) - 0.25
-    root_a0 = try(uniroot(fn_a0, lower = -15, upper = 15), silent = TRUE)
-    a0 = if (inherits(root_a0, "try-error")) -2.22 else root_a0$root
+    fn_a0 = function(a0) mean(input$effect * A + expit(a0 + g * lin_y)) - 0.25
+    a0 = uniroot(fn_a0, lower = -15, upper = 15)$root
     pY = expit(a0 + g * lin_y)
-    Y = rbinom(nsim, 1, pY)
+    Y0 = rbinom(nsim, 1, pY)
+    Y1 = rbinom(nsim, 1, .clip(input$effect + pY,0,1))
+    Y = ifelse(A==1, Y1, Y0)
     
     tibble(
       ps = ps,
       A = A,
       B = B,
-      Y = Y
+      Y = Y,
+      Y0 = Y0,
+      Y1 = Y1
     ) %>%
       bind_cols(as_tibble(X)) %>% 
       mutate(b0 = b0, g = g, a0 = a0)
@@ -173,16 +178,22 @@ server = function(input, output, session) {
     ev = mean(d$Y)
     evA0 = mean(d$Y[d$A == 0])
     evA1 = mean(d$Y[d$A == 1])
-    ate = evA1 - evA0
+    mY0 = mean(d$Y0)
+    mY1 = mean(d$Y1)
+    ate_crude = evA1 - evA0
+    ate = mY1 - mY0
     tibble(
       Metric = c(
         "Event rate: general population",
         "Event rate: A=0",
         "Event rate: A=1",
+        "E[Y(0)]",
+        "E[Y(1)]",
         "Crude ATE",
+        "E[Y(1) - Y(0)] (ATE)",
         "a0 (calibrated to E(Y)=25%)"
       ),
-      Value = c(ev, evA0, evA1, ate,unique(d$a0))
+      Value = c(ev, evA0, evA1, mY0, mY1, ate_crude, ate, unique(d$a0))
     ) 
   })
   output$summary_table = renderTable({
