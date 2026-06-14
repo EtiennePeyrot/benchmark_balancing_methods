@@ -1,4 +1,4 @@
-# Choosing Covariate Balancing Methods for Causal Inference
+# Choosing Covariate Balancing Methods for Causal Inference: Practical Insights from a Simulation Study
 
 *Code for the simulation study and companion Shiny app*
 
