@@ -40,7 +40,7 @@ Tested with **R 4.2.1**.
 ### Required packages
 
 * [`WeightIt`](https://cran.r-project.org/package=WeightIt) (EB weights, `method = "energy"`)
-* [`CBPS`](https://cran.r-project.org/package=rootSolve) (standard CBPS-JI)
+* [`rootSolve`](https://cran.r-project.org/package=rootSolve) (standard CBPS-JI)
 * [`osqp`](https://cran.r-project.org/package=osqp) (QP solver used in KOM implementation)
 * `shiny` (for the app)
 * Common deps you likely already have: `mvtnorm`, `stats`, `utils`, etc.
