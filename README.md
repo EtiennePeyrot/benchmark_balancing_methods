@@ -25,7 +25,7 @@ We benchmark weighting approaches including **IPTW**, **standard Covariate Balan
 
 ## What’s included
 
-* `display app/` – **R Shiny app** to explore: impact of hyperparameters in the data-generative mechanism, and metrics (bias, variance, RMSE, MAE, CI coverage) across all scenarios.
+* `display app/` – **R Shiny app** to explore: impact of hyperparameters in the data-generative mechanism, and metrics (bias, variance, RMSE, MAE, CI coverage, variance ratio) across all scenarios.
 * `code/` – Scripts/functions to generate data, compute weights, run estimators, and summarize results.
 * `results/` – Saved outputs (figures/tables), including main simulation results and non-null treatment-effect sensitivity analyses.
 
